@@ -38,9 +38,35 @@ p{
 .section-m1{
     padding: 40px 0;
 }
+button.normal{
+   font-size: 14px;
+   font-weight: 600;
+   padding: 15px 30px;
+   color: #000;
+   background-color: #fff;
+   border-radius: 4px;
+   cursor: pointer;
+   border: none;
+   outline: none;
+   transition: 0.2s;
+
+}
+button.white{
+   font-size: 13px;
+   font-weight: 600;
+   padding: 11px 18px;
+   color: #000;
+   background-color: transparent;
+   cursor: pointer;
+   border: 1px solid #fff;
+   outline: none;
+   transition: 0.2s;
+
+}
 body{
     width: 100%;
 }
+
 
 
 
@@ -93,8 +119,8 @@ body{
 
  /* Home page */
  #hero{
-    background-image: url("img/pictesttwo.png");
-    height: 90vh;
+    background-image: url("img/piconetest.jpg");
+    height: 70vh;
     width: 100%;
     background-size: cover;
     background-position: top 25% right 0;
@@ -111,7 +137,7 @@ body{
     color: #088178;
  }
  #hero button{
-    background-image: url(/img/piconetest.png);/* รูปตรงปุ่มกดหน้า home*/
+    background-image: url(/img/piconetest.jpg);/* รูปตรงปุ่มกดหน้า home*/
     background-color: transparent;
     color: #088178;
     border: 0;
@@ -133,7 +159,7 @@ body{
    flex-wrap: wrap;
 }
 #product1 .pro{
-    width: 23%;
+    width: 16%;
     min-width: 250px;
     padding: 10px 12px;
     border: 1px solid #cce7d0;
@@ -174,6 +200,121 @@ body{
    font-weight: 700;
    color: #088178;
 }
+#banner{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   background-image: url(img/backgroundtest.jpg);
+   width: 100%;
+   height: 20vh;
+   background-size: cover;
+   background-position: center;
+}
+#banner h4{
+   color: black;
+   font-size: 16px;
 
+}
+#banner h2{
+   color: black;
+   font-size: 40px;
+   padding: 10px 0;
+}
+#banner h2 span{
+   color: red;
 
+}
+#banner button:hover{
+   background: #088178;
+   color: #fff;
+}
+#sm-banner{
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
 
+#sm-banner .banner-box{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   text-align: center;
+   background-image: url(img/picbackground1.jpg);
+   min-width: 580px;
+   height: 40vh;
+   background-size: cover;
+   background-position: center;
+   padding: 16px;
+   
+}
+#sm-banner .banner-box2{
+   
+   background-image: url(img/picbackground2.jpg);
+   
+}
+#sm-banner h4{
+   color: black;
+   font-size: 20px;
+   padding: 10px 0;
+
+}
+#sm-banner h2{
+   color: black;
+   font-size: 40px;
+   padding: 10px 0;
+
+}
+#sm-banner span{
+   color: black;
+   font-size: 18px;
+   padding: 10px 0;
+
+}
+#sm-banner .banner-box:hover button{
+   background: #088;
+   border: 1px solid #088;
+}
+#banner3 {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   padding: 0 80px;
+}
+#banner3 .banner-box{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   text-align: center;
+   background-image: url(img/picbackground3.jpg);
+   min-width: 30%;
+   height: 30vh;
+   background-size: cover;
+   background-position: center;
+   padding: 20px;
+   margin-bottom: 20px;
+}
+#banner3 .banner-box2{
+   
+   background-image: url(img/picbackground4.jpg);
+   
+}
+#banner3 .banner-box3{
+   
+   background-image: url(img/picbackground5.jpg);
+   
+}
+#banner3 h2{
+   color: black;
+   font-size: 50px;
+   font-weight: 900;
+
+}
+#banner3 h3{
+   color: black;
+   font-size: 15px;
+   font-weight: 800;
+}
