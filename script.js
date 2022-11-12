@@ -6,3 +6,4 @@ if (bar) {
         nav.classList.add('active');
     })
 }
+//error กดเเล้วไม่เเสดงผล
