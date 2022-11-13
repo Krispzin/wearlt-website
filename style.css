@@ -383,17 +383,18 @@ footer .copyright{
       box-shadow: 0 40px 60px rgba(0,0,0,0.1);
       padding: 80px 0 0 10px;
    }
-  #navbar.active{
+   #navbar.active{
       right: 0px;
    }
+  
   #navbar li{
       margin-bottom: 25px;
    }
-  #mobile1{
+  #mobile{
       display: flex;
       align-items: center;
    }
-   #mobile1 i{
+   #mobile i{
       color: #1a1a1a;
       font-size: 24px;
       padding-left: 20px;
