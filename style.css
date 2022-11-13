@@ -209,6 +209,18 @@ body{
    font-weight: 700;
    color: #088178;
 }
+#product1 .pro .cart{
+   width: 20px;
+   height: 20px;
+   line-height: 40px;
+   border-radius: 50px;
+   background-color: #e8f6ea;
+   font-weight: 500;
+   color: #088178;
+
+
+
+}
 #banner{
    display: flex;
    flex-direction: column;
@@ -474,4 +486,89 @@ footer .copyright{
    width: 100%;
    
   }
+}
+/* shop page */
+#page-header{
+   background-image: url("img/background_page2.jpg");
+   width: 100%;
+   height: 40vh;
+   background-size: cover;
+   display: flex;
+   justify-content: center;
+   text-align: center;
+   flex-direction: column;
+   padding: 14px;
+
+}
+#page-header h2,
+#page-header p{
+   color: #fff;
+}
+#paginaction{
+   text-align: center;
+
+}
+#paginaction a{
+   text-decoration: none;
+   background-color: #088178;
+   padding: 15px 20px;
+   border-radius: 4px;
+   color: #fff;
+   font-weight: 600;
+}
+#paginaction a img{
+   text-decoration: none;
+   
+}
+/* single product */
+#prodetails{
+   display: flex;
+   margin-top: 20px;
+}
+
+
+
+#prodetails .single-pro-image{
+   width: 40%;
+   margin-right: 50px;
+}
+.small-img-group{
+   display: flex;
+   justify-content: space-between;
+}
+#small-img-col{
+   flex: basis 24%; 
+   cursor: pointer;
+}
+#prodetails .single-pro-details{
+   width: 50%;
+   padding-top: 30px;
+}
+#prodetails .single-pro-details h4{
+   padding: 40px 0 20px 0;
+}
+#prodetails .single-pro-details h2{
+   padding: 26px;
+}
+#prodetails .single-pro-details select{
+   display: block;
+   padding: 5px 10px;
+   margin-bottom: 10px;
+}
+#prodetails .single-pro-details input{
+   width: 50px;
+   height: 47px;
+   padding-left: 10px;
+   font-size: 16px;
+   margin-right: 10px;
+}
+#prodetails .single-pro-details input:focus{
+   outline: none;
+}
+#prodetails .single-pro-details button{
+   background: #088178;
+   color: #fff;
+}
+#prodetails .single-pro-details span{
+   line-height: 25px;
 }
