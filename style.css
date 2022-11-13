@@ -145,8 +145,9 @@ body{
    color: #088178;
 }
 #hero button{
-   background-image: url(/img/piconetest.jpg);/* รูปตรงปุ่มกดหน้า home*/
+   
    background-color: transparent;
+   background-size: 68px;
    color: #088178;
    border: 0;
    padding: 14px 80;
