@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
     <link rel="stylesheet" href="stylesignup.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <div class="login-warpper">
@@ -30,7 +31,7 @@
             
             <div class="button-area">
                 
-                <button class="btn btn-primary">Login</button>
+                <button onclick="window.location.href='index.html';"class="btn btn-primary">Login</button>
             </div>
 
 
@@ -43,5 +44,67 @@
 
 
     <script src="scriptsignup.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        import { getDatabase, ref, set, child, get } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBQs_XdZ1BAvfXQB5TwfMPXpATtmvPRC3w",
+            authDomain: "wearit-3bf48.firebaseapp.com",
+            databaseURL: "https://wearit-3bf48-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "wearit-3bf48",
+            storageBucket: "wearit-3bf48.appspot.com",
+            messagingSenderId: "1048159161434",
+            appId: "1:1048159161434:web:d4cb925dd700e078b5dc63",
+            measurementId: "G-KGSRWKZNDV"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+
+        const db = getDatabase(app);
+
+//--------------------------------------ตัวแปล----------------------------------//
+
+        const email = document.getElementById("email");
+        const pass = document.getElementById("password");
+        const btn = document.getElementById("main_btn");
+
+//------------------------------ยืนยันตัวตน--------------------------------//
+
+        function Authenticate() {
+            const dbref = ref(db);
+
+            get(child(dbref, "UserLists/"+ email.value)).then((snapshot)=>{
+                if(snapshot.exists()){
+                    let dbpass = decPass(snapshot.val().password);
+                    if(dbpass == pass.value){
+                        login();
+                    }
+
+                    else {
+                        alert("Email does not exist");
+                    }
+                }
+
+                else {
+                    alert("Email or password in invalid");
+                }
+            });
+        }
+
+//------------------------------DECRYPT PASS----------------------------------//
+
+        function decPass(dbpass){
+            var pass12 = CryptoJS.AES.decrypt(dbpass, pass.value);
+            return pass12.toString(CryptoJS.enc.Utf8);
+        }
+
+//--------------------------------ล็อกอิน----------------------------------//
+
+        function login(user){
+            sessionStorage.setItem("user", JSON.stringify(user));
+            window.location="index.html";
+        }
+    </script>
 </body>
 </html>
