@@ -512,14 +512,11 @@ footer .copyright{
    text-decoration: none;
    background-color: #088178;
    padding: 15px 20px;
-   border-radius: 4px;
+   border-radius: 3px;
    color: #fff;
    font-weight: 600;
 }
-#paginaction a img{
-   text-decoration: none;
-   
-}
+
 /* single product */
 #prodetails{
    display: flex;
