@@ -18,8 +18,8 @@
             <ul id="navbar">
                 <li><a href="index.html">Home</a></li>
                 <li><a class="active" href="shop.html">Shop</a></li>
-                <li><a href="signup.html">Sign up</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html" id="signuplink">Sign up</a></li>
+                <li><a href="login.html" id="loginlink">Login</a></li>
                 
                 <li><a href="cart.html"><img id="bar" src="img/shopping-cart.png"  width="20"></a></li>
                 <img id="close" href="#" src="img/close.png"  width="10">
@@ -337,7 +337,7 @@
 
         </div>
         <div class="col">
-            <h4>My Accout</h4>
+            <h4>My Account</h4>
             <a href="#">Sing In</a>
             <a href="#">View Cart</a>
             <a href="#">My Wishlist</a>
@@ -360,6 +360,43 @@
     
     
     <script src="script1.js"></script>
+    <script>
+    
+//--------------------------------ตัวแปล--------------------------------//
+        
+        const signuplink = document.getElementById("signuplink");
+        const loginlink = document.getElementById("loginlink");
+        var currentuser = null;
+        
+//-------------------------------ฟังก์ชั่น-------------------------------//
+        
+        function getUsername(){
+            currentuser = JSON.parse(sessionStorage.getItem("user"));
+        }
+
+        function Signout(){
+            sessionStorage.removeItem("user");
+            window.location = "index.html";
+        }
+
+//--------------------------------เมื่อโหลด--------------------------------//
+        
+        window.onload = function(){
+            getUsername();
+            if(currentuser != null){
+                signuplink.innerText = currentuser.name;
+                signuplink.href = "#";
+
+                loginlink.innerText = "Sign Out";
+            }
+
+            else {
+                signuplink.innerText = "Sign Up";
+                loginlink.innerText = "Login";
+            }
+        }
+
+    </script>
 </body>
 
 </html>
