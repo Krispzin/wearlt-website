@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
     <link rel="stylesheet" href="stylesignup.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <div class="login-warpper">
@@ -19,8 +20,8 @@
         <div class="login-right">
             <div class="h2">Register</div>
             <div class="form-group">
-                <input type="text" id="full-name" placeholder="Full Name">
-                <label for="full-name">Full Name</label>
+                <input type="text" id="username" placeholder="Username">
+                <label for="username">Username</label>
             </div>
             <div class="form-group">
                 <input type="text" id="email" placeholder="Email">
@@ -39,7 +40,7 @@
             </div>
             <div class="button-area">
                 <button class="btn btn-seccodary">Login</button>
-                <button class="btn btn-primary">Sign-Up</button>
+                <button class="btn btn-primary" id="main_btn">Sign-Up</button>
             </div>
 
 
@@ -48,9 +49,97 @@
     </div>
 
 
-
-
-
     <script src="scriptsignup.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        import { getDatabase, ref, set, child, get } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBQs_XdZ1BAvfXQB5TwfMPXpATtmvPRC3w",
+            authDomain: "wearit-3bf48.firebaseapp.com",
+            databaseURL: "https://wearit-3bf48-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "wearit-3bf48",
+            storageBucket: "wearit-3bf48.appspot.com",
+            messagingSenderId: "1048159161434",
+            appId: "1:1048159161434:web:d4cb925dd700e078b5dc63",
+            measurementId: "G-KGSRWKZNDV"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+
+        const db = getDatabase(app);
+
+//------------------------------------ตัวแปล---------------------------------------//
+
+        const name = document.getElementById("username");
+        const email = document.getElementById("email");
+        const pass = document.getElementById("password");
+        const btn = document.getElementById("main_btn");
+
+//----------------------------------VALIDATION--------------------------------//
+
+        function Validation(){
+            let nameregex = /^[a-zA-Z0-9]+$/;
+            let emailregex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            let passregex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,20}$/;
+
+            if(!nameregex.test(name.value)){
+                alert("Name must contain only letters and numbers");
+                return false;
+            }
+
+            if(!emailregex.test(email.value)){
+                alert("Invalid email");
+                return false;
+            }
+
+            if(!passregex.test(pass.value)){
+                alert("Password must contain at least one number and one uppercase and lowercase letter, and at least 3 to 20 characters");
+                return false;
+            }
+
+            return true;
+        }
+
+//--------------------------------สร้างบัญชีใน Database----------------------------------//
+
+        function RegisterUser() {
+            if(!Validation()){
+                return;
+            };
+            const dbref = ref(db);
+
+            get(child(dbref, "UserLists/"+ name.value)).then((snapshot)=>{
+                if(snapshot.exists()){
+                    alert("Username already exists");
+            }
+            else {
+                set(ref(db, "UserLists/"+ name.value), {
+                    name: name.value,
+                    email: email.value,
+                    pass: encPass()
+                })
+                .then(()=>{
+                    alert("Sign up successfully");
+                })
+                .catch((error)=>{
+                    alert("Error: " + error);
+                })
+            }
+            });
+        }
+
+//------------------------------ENCRYPTION-----------------------------//
+
+        function encPass(){
+            var pass12 = CryptoJS.AES.encrypt(pass.value, pass.value);
+            return pass12.toString();
+        }
+
+//-------------------------------ปุ่มสมัครสมาชิก-----------------------------//
+
+        btn.addEventListener("click", RegisterUser);
+
+    </script> 
 </body>
 </html>
