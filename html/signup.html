@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
-    <link rel="stylesheet" href="stylesignup.css">
+    <link rel="stylesheet" href="/css/stylesignup.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <div class="login-warpper">
         <div class="login-left">
-            <img src="img/backgroundtest.jpg" >
+            <img src="/img/backgroundtest.jpg" >
             <div class="h1">Click to Sign Up</div>
         </div>
         
@@ -19,6 +19,7 @@
 
         <div class="login-right">
             <div class="h2">Register</div>
+            <div class="h3">Back to Shop</div>
             <div class="form-group">
                 <input type="text" id="username" placeholder="Username">
                 <label for="username">Username</label>
@@ -42,7 +43,7 @@
     </div>
 
 
-    <script src="scriptsignup.js"></script>
+    <script src="/js/scriptsignup.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
         import { getDatabase, ref, set, child, get } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
