@@ -38,6 +38,8 @@
                 <button class="btn btn-primary" id="main_btn">Sign-Up</button>
             </div>
 
+
+
         </div>
     </div>
 
@@ -102,12 +104,12 @@
             };
             const dbref = ref(db);
 
-            get(child(dbref, "UserLists/"+ name.value)).then((snapshot)=>{
+            get(child(dbref, "UserLists/"+ email.value)).then((snapshot)=>{
                 if(snapshot.exists()){
                     alert("Username already exists");
             }
             else {
-                set(ref(db, "UserLists/"+ name.value), {
+                set(ref(db, "UserLists/"+ email.value), {
                     name: name.value,
                     email: email.value,
                     pass: encPass()
