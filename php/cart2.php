@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    require_once('dbcontroller.php');
+    $db_handle = new DBController()
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +39,7 @@
                     <td style="text-align: right">1</td>
                     <td style="text-align: right">1000 Bath</td>
                     <td style="text-align: right;">1000 Bath</td>
-                    <td style="text-align: center;"><a href="#" class="btnRemoveAction"><img src="/img/close.png" width="7" alt="Remove Item"></a></td>
+                    <td style="text-align: center;"><a href="#" class="btnRemoveAction"><img src="/Preview_JectWeb/img/close.png" width="7" alt="Remove Item"></a></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="right">Total:</td>
@@ -46,14 +55,27 @@
     <div id="product-grid">
         <div class="txt-heading">Products</div>
 
+        <?php
+
+            $product_array = $db_handle->runQuery("SELECT * FROM tblproduct ORDER BY id  ASC");
+        
+            if (!empty($product_array)){
+                foreach($product_array as $key => $value){
+
+                
+
+        ?>
+
+        
+
         <div class="product-item">
-            <form action="index.php?action&code">
+            <form action="index.php?action=add&code">
                 <div class="product-image">
-                    <img src="/img/clothestest2.jpg" width="200" alt="images">
+                    <img src="<?php echo $product_array[$key]["image"]; ?>"  width="200" alt="images">
                 </div>
                 <div class="product-title-footer">
-                    <div class="product-title">Shirt</div>
-                    <div class="product-price">1000 Bath</div>
+                    <div class="product-title"><?php echo $product_array[$key]["name"]; ?></div>
+                    <div class="product-price"><?php echo "$ " . $product_array[$key]["price"]; ?></div>
                     <div class="cart-action">
                         <input type="text" class="product-quantity" name="quantity" value="1" size="2">
                         <input type="submit" value="Add To Cart" class="btnAddAction">
@@ -62,7 +84,12 @@
             </form>
 
         </div>
-        
+
+        <?php
+                }
+            }
+
+        ?>
     </div>
     
 </body>
