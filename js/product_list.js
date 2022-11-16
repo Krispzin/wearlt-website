@@ -16,5 +16,14 @@ var products =[
         cart: false,
         quantity: 1,
         total: 0
+    },
+    {
+        id: 3,
+        img: '/product/shirt/shirt1.jpg',
+        name: 'blue shirt',
+        price: 250,
+        cart: false,
+        quantity: 1,
+        total: 0
     }
 ]
