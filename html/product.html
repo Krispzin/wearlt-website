@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+
+        #productsDiv {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .productcard{
+            border:1px lightgray solid;
+            height: 530px;
+            width: 290px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;
+            transition: border-color .3s;
+        }
+
+        .productcard:hover{
+            border-color: darkblue;
+        }
+
+        .thumb{
+            width: 220px;
+            height: 160px;
+            cursor: pointer;
+        }
+
+        .detbtns{
+            background-color: navy;
+            color: white;
+            width: 90%;
+            margin-bottom: 15px;
+        }
+
+        .detbtns:hover{
+            background-color: darkblue;
+            color: wheat;
+        }
+
+        .title{
+            color: darkblue;
+            font-size:16px;
+            font-weight: bold;
+            cursor: pointer;
+            padding-left: 5px;
+            padding-right: 5px;
+            width: 100%;
+            text-align: center;
+        }
+
+        @media screen and (max-width:767px) {
+            #productsDiv {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="productsDiv" class="container">
+
+        <div class="productcard">
+            <img src="/img/clothestest5.jpg" class="thumb mt-2" id="thumb1">
+            <p class="title" id="title1">Clothes eqweqw qweqweqw qweqweqqew eqweqweqq</p>
+            <ul class="points">
+                <li>Point 1 eqweqweeq nwqeqqweqeqw</li>
+                <li>Point 2 eqweqqweqw eqweqwqe</li>
+                <li>Point 3 eqwewqeq  weqq</li>
+            </ul>
+            <h5>200,200bath nigga</h5>
+            <button class="detbtns btn" id="detbtn"> view Details </button>
+        </div>
+
+
+<script>
+    function getShortTitle() {
+        if(title.length > 49) title = title.substring(0,47);
+        else return title;
+        return title + "...";
+    }
+</script>
+
+
+
+
+
+
+</body>
+
+</html>
