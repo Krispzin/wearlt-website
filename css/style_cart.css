@@ -25,7 +25,7 @@
     border-bottom: 1px solid #e0e0e0;
     overflow: auto;
 }
-#btnEmpty{
+.btnEmpty{
     background-color: #fff;
     border: #d00000 1px solid;
     padding: 5px;
@@ -96,4 +96,12 @@
     padding: 5px;
     vertical-align: middle;
     margin-right: 15px;
+}
+
+
+.no-records{
+    text-align: center;
+    clear: both;
+    margin: 40px 0;
+    color: #d00000;
 }
