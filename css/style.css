@@ -254,7 +254,7 @@ body{
 #sm-banner{
    display: flex;
    justify-content: space-between;
-   flex-wrap: wrap;
+   
 }
 
 #sm-banner .banner-box{
@@ -264,7 +264,7 @@ body{
    align-items: flex-start;
    text-align: center;
    background-image: url(/img/picbackground1.jpg);
-   min-width: 580px;
+   min-width: 520px;
    height: 40vh;
    background-size: cover;
    background-position: center;
