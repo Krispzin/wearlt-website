@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Admin Panel</title>
     <style>
         body{
@@ -67,20 +68,20 @@
 <body>
     <!-- admin panel -->
     <label> Product Name </label> <input type="text" id="nameinp"> <br><br>
-    <label> Product Price</label> <input type="text" id="priceinp"><br><br>
-    <label> Stock (Quantity)</label> <input type="text" id="stockinp"><br><br>
+    <label> Product Price</label> <input type="number" id="priceinp"><br><br>
+    <!-- <
     <label> Category</label>
     <select id="catinp">
-        <option value="Keyboard & Mouse">Keyboard & Mouse</option>
-        <option value="Laptops">Laptop</option>
-        <option value="Monitors">Monitor</option>
-        <option value="Graphics Card">Graphic card</option>
-        <option value="ass">ass</option>
+        <option value="shirt">shirt</option>
+        <option value="t-shirt">t-shirt</option>
+        <option value="pants">pants</option>
+        <option value="hoodie">hoodie</option>
+        <!-- <option value="ass">ass</option> -->
     </select><br><br>
-    <label>Points #1</label> <input type="text" id="nameinp" id="p1inp" class="pointers"><br><br>
-    <label>Points #2</label> <input type="text" id="nameinp" id="p2inp" class="pointers"><br><br>
-    <label>Points #3</label> <input type="text" id="nameinp" id="p3inp" class="pointers"><br><br>
-    <label>Points #4</label> <input type="text" id="nameinp" id="p4inp" class="pointers"><br><br>
+    <label>Points #1</label> <input type="text" id="p1inp" class="pointers"><br><br>
+    <label>Points #2</label> <input type="text" id="p2inp" class="pointers"><br><br>
+    <label>Points #3</label> <input type="text" id="p3inp" class="pointers"><br><br>
+    <label>Points #4</label> <input type="text" id="p4inp" class="pointers"><br><br>
 
     <label id="pdlab">Product Description</label> <textarea id="desarea"></textarea><br><br>
 
@@ -108,7 +109,7 @@
         const category = document.getElementById('catinp');
         const description = document.getElementById('desarea');
         const price = document.getElementById('priceinp');
-        const stock = document.getElementById('stockinp');
+        // const stock = document.getElementById('stockinp');
 
         const p1 = document.getElementById('p1inp');
         const p2 = document.getElementById('p2inp');
@@ -159,13 +160,13 @@
                 FileReaders[i].readAsDataURL(Files[i]);
             }
 
-
             let lab = document.getElementById('label');
-            lab.innerHTML = 'clear images';
+            lab.innerHTML = 'clear img';
             lab.style = 'cursor:pointer; display:block ;color:navy ; font-size:12px';
             lab.addEventListener('click', ClearImages);
             imgdiv.append(lab);
         }
+        
 
         function ClearImages(){
             Files = [];
@@ -198,7 +199,6 @@
         function RestoreBack(){
             selBtn.disabled =false;
             addBtn.disabled =false;
-            proglab.innerHTML = '';
         }
         
 //---------------------------------EVENT---------------------------------//
@@ -226,7 +226,7 @@
 
             const storage = getStorage();
 
-            const ImageAddress = 'images/' + getShortTitle() + "img#" + (imgNo+1);
+            const ImageAddress = 'images/' + getShortTitle() + "/img#" + (imgNo+1);
 
             const storageRef = sRef(storage, ImageAddress);
 
@@ -256,8 +256,9 @@
 
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        
 
-            const firebaseConfig = {
+        const firebaseConfig = {
             apiKey: "AIzaSyBQs_XdZ1BAvfXQB5TwfMPXpATtmvPRC3w",
             authDomain: "wearit-3bf48.firebaseapp.com",
             databaseURL: "https://wearit-3bf48-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -266,7 +267,7 @@
             messagingSenderId: "1048159161434",
             appId: "1:1048159161434:web:d4cb925dd700e078b5dc63",
             measurementId: "G-KGSRWKZNDV"
-            };
+        };
 
         const app = initializeApp(firebaseConfig);
 
@@ -283,7 +284,7 @@
         // ---------------------upload a product------------------------//
         
         function UploadAProduct(){
-            set(ref(realdb,"theProductRealdb/"+ getShortTitle())),{
+            set(ref(realdb,"theProductRealdb/"+ getShortTitle()),{
                 ProductTitle: name.value,
                 Category: category.value,
                 Description: description.value,
@@ -291,7 +292,7 @@
                 Stock: stock.value,
                 Point:GetPoints(),
                 LinksOfImages: ImageLinksArray
-            }
+            });
             alert("product uploaded");
             RestoreBack();
         }

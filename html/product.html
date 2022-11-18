@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
 
         #productsDiv {
@@ -71,34 +71,118 @@
     </style>
 </head>
 
+
 <body>
+
     <div id="productsDiv" class="container">
+    </div>
 
-        <div class="productcard">
-            <img src="/img/clothestest5.jpg" class="thumb mt-2" id="thumb1">
-            <p class="title" id="title1">Clothes eqweqw qweqweqw qweqweqqew eqweqweqq</p>
-            <ul class="points">
-                <li>Point 1 eqweqweeq nwqeqqweqeqw</li>
-                <li>Point 2 eqweqqweqw eqweqwqe</li>
-                <li>Point 3 eqwewqeq  weqq</li>
-            </ul>
-            <h5>200,200bath nigga</h5>
-            <button class="detbtns btn" id="detbtn"> view Details </button>
-        </div>
+<script type="module">
+
+//--------------------------------IMPORT + CONFIGURATION-------------------------------//
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBQs_XdZ1BAvfXQB5TwfMPXpATtmvPRC3w",
+            authDomain: "wearit-3bf48.firebaseapp.com",
+            databaseURL: "https://wearit-3bf48-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "wearit-3bf48",
+            storageBucket: "wearit-3bf48.appspot.com",
+            messagingSenderId: "1048159161434",
+            appId: "1:1048159161434:web:d4cb925dd700e078b5dc63",
+            measurementId: "G-KGSRWKZNDV"
+        };
+
+        const app = initializeApp(firebaseConfig);
+
+        // --------------------import database functions---------------------//
 
 
-<script>
-    function getShortTitle() {
+        import { getDatabase, ref, set, child, get } 
+            from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+        const realdb = getDatabase();
+
+        var OuterDiv = document.getElementById('productsDiv');
+        var ArrayOfProducts = [];
+        window.addEventListener('load', GetAllProducts);
+
+        function GetAllProducts(){
+            const dbref = ref(realdb);
+
+            get(child(dbref, "theProductRealdb"))
+            .then((snapshot) => {
+                snapshot.forEach(prod => {
+                    ArrayOfProducts.push(prod.val());
+                });
+                AddAllProducts();
+            })
+        }
+
+        function AddAllProducts(){
+            let i = 0;
+            ArrayOfProducts.forEach(prod => {
+                AddAProduct(prod, i++);
+            });
+        }
+
+        function AddAProduct(product, index){
+            let html = 
+            `
+            <img src="`+ product.LinksOfImages[0] +`" class="thumb mt-2" id="thumb`+ index +`">
+            <p class="title" id="title`+ index +`">`+ getShortTitle(product.ProductTitle) +`</p>
+            `+
+            // GetUl(product.Point)
+            // +
+            // GenerateStockLabel(product.Stock)
+            // +
+            `
+            <h5 class="price">`+ product.Price +` Thai baht</h5>
+            <button class="detbtns btn" id="detbtn">View Details</button>
+            `
+
+            let newProd = document.createElement('div');
+            newProd.classList.add('productcard');
+            newProd.innerHTML = html;
+            OuterDiv.append(newProd);
+        }
+
+        function GetUl(array){
+            let ul = document.createElement('ul');
+            ul.classList.add('points');
+
+            array.forEach(element => {
+                let li = document.createElement('li');
+                li.innerText=element;
+                ul.append(li);
+            });
+            return ul.outerHTML;
+        }
+
+        function getShortTitle(title){
         if(title.length > 49) title = title.substring(0,47);
         else return title;
         return title + "...";
-    }
+        }
+
+        function GenerateStockLabel(stock){
+            let stocklabel = document.createElement('h5');
+            stocklabel.classList.add('stock');
+            
+            if(stock > 0){
+                stocklabel.innerHTML = 'In Stock';
+                stocklabel.classList.add('text-success');
+            }
+            else{
+                stocklabel.innerHTML = 'Out of Stock';
+                stocklabel.classList.add('text-warning');
+            }
+            return stocklabel.outerHTML;
+        }
+
+
 </script>
-
-
-
-
-
 
 </body>
 
