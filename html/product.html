@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
-
         #productsDiv {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        .productcard{
-            border:1px lightgray solid;
+        .productcard {
+            border: 1px lightgray solid;
             height: 530px;
             width: 290px;
             margin: 20px;
@@ -25,39 +25,46 @@
             justify-content: space-between;
             flex-direction: column;
             transition: border-color .3s;
+            padding: 10px;
         }
 
-        .productcard:hover{
+        .productcard:hover {
             border-color: darkblue;
         }
 
-        .thumb{
+        .thumb {
             width: 220px;
             height: 160px;
             cursor: pointer;
         }
 
-        .detbtns{
+        .detbtns {
             background-color: navy;
             color: white;
             width: 90%;
             margin-bottom: 15px;
         }
 
-        .detbtns:hover{
+        .detbtns:hover {
             background-color: darkblue;
             color: wheat;
         }
 
-        .title{
+        .title {
             color: darkblue;
-            font-size:16px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             padding-left: 5px;
             padding-right: 5px;
             width: 100%;
             text-align: center;
+        }
+
+        .points {
+            align-items: flex-start;
+            word-wrap: br eak-word;
+            height: 192px;
         }
 
         @media screen and (max-width:767px) {
@@ -67,7 +74,6 @@
                 justify-content: center;
             }
         }
-
     </style>
 </head>
 
@@ -76,23 +82,23 @@
 
     <div id="productsDiv" class="container">
     </div>
+    <h1 id="array"></h1>
 
-<script type="module">
+    <script type="module">
 
-//--------------------------------IMPORT + CONFIGURATION-------------------------------//
+        //--------------------------------IMPORT + CONFIGURATION-------------------------------//
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
-        
+
 
         const firebaseConfig = {
-            apiKey: "AIzaSyBQs_XdZ1BAvfXQB5TwfMPXpATtmvPRC3w",
-            authDomain: "wearit-3bf48.firebaseapp.com",
-            databaseURL: "https://wearit-3bf48-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "wearit-3bf48",
-            storageBucket: "wearit-3bf48.appspot.com",
-            messagingSenderId: "1048159161434",
-            appId: "1:1048159161434:web:d4cb925dd700e078b5dc63",
-            measurementId: "G-KGSRWKZNDV"
+            apiKey: "AIzaSyBrMehVkwzcv_U4aXpnCclwmSWWTJ-ucNU",
+            authDomain: "wearitagain-c0f31.firebaseapp.com",
+            databaseURL: "https://wearitagain-c0f31-default-rtdb.asia-southeast1.firebasedatabase.app/",
+            projectId: "wearitagain-c0f31",
+            storageBucket: "wearitagain-c0f31.appspot.com",
+            messagingSenderId: "526909210632",
+            appId: "1:526909210632:web:318aad8a559803f46a11bd"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -100,7 +106,7 @@
         // --------------------import database functions---------------------//
 
 
-        import { getDatabase, ref, set, child, get } 
+        import { getDatabase, ref, set, child, get }
             from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
         const realdb = getDatabase();
 
@@ -108,38 +114,33 @@
         var ArrayOfProducts = [];
         window.addEventListener('load', GetAllProducts);
 
-        function GetAllProducts(){
+        function GetAllProducts() {
             const dbref = ref(realdb);
 
             get(child(dbref, "theProductRealdb"))
-            .then((snapshot) => {
-                snapshot.forEach(prod => {
-                    ArrayOfProducts.push(prod.val());
-                });
-                AddAllProducts();
-            })
+                .then((snapshot) => {
+                    snapshot.forEach(prod => {
+                        ArrayOfProducts.push(prod.val());
+                    });
+                    AddAllProducts();
+                })
         }
 
-        function AddAllProducts(){
+        function AddAllProducts() {
             let i = 0;
             ArrayOfProducts.forEach(prod => {
                 AddAProduct(prod, i++);
             });
+            AssignAllEvent();
         }
 
-        function AddAProduct(product, index){
-            let html = 
-            `
-            <img src="`+ product.LinksOfImages[0] +`" class="thumb mt-2" id="thumb`+ index +`">
-            <p class="title" id="title`+ index +`">`+ getShortTitle(product.ProductTitle) +`</p>
-            `+
-            // GetUl(product.Point)
-            // +
-            // GenerateStockLabel(product.Stock)
-            // +
-            `
-            <h5 class="price">`+ product.Price +` Thai baht</h5>
-            <button class="detbtns btn" id="detbtn">View Details</button>
+        function AddAProduct(product, index) {
+            let html =
+                `
+            <img src="`+ product.LinksOfImages[0] + `" class="thumb mt-2" id="thumb-` + index + `">
+            <p class="title" id="title-`+ index + `">` + getShortTitle(product.ProductTitle) + `</p>
+            <h5 class="price">`+ product.Price + ` Thai baht</h5>
+            <button class="detbtns btn" id="detbtn-`+ index + `">View Details</button>
             `
 
             let newProd = document.createElement('div');
@@ -160,16 +161,16 @@
         //     return ul.outerHTML;
         // }
 
-        function getShortTitle(title){
-        if(title.length > 49) title = title.substring(0,47);
-        else return title;
-        return title + "...";
+        function getShortTitle(title) {
+            if (title.length > 49) title = title.substring(0, 47);
+            else return title;
+            return title + "...";
         }
 
         // function GenerateStockLabel(stock){
         //     let stocklabel = document.createElement('h5');
         //     stocklabel.classList.add('stock');
-            
+
         //     if(stock > 0){
         //         stocklabel.innerHTML = 'In Stock';
         //         stocklabel.classList.add('text-success');
@@ -181,9 +182,33 @@
         //     return stocklabel.outerHTML;
         // }
 
+        function GetProductIndex(id) {
+            var indstart = id.indexOf('-') + 1;
+            var indend = id.length;
+            return Number(id.substring(indstart, indend));
+        }
 
-</script>
+        function GotoProductDetails(event) {
+            var index = GetProductIndex(event.target.id);
+            localStorage.Product = JSON.stringify(ArrayOfProducts[index]);
+            window.location = 'product-details.html';
+        }
 
+        function AssignAllEvent() {
+            var btns = document.getElementsByClassName('detbtns');
+            var titles = document.getElementsByClassName('title');
+            var thumbs = document.getElementsByClassName('thumb');
+
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].addEventListener('click', GotoProductDetails);
+                titles[i].addEventListener('click', GotoProductDetails);
+                thumbs[i].addEventListener('click', GotoProductDetails);
+            }
+        }
+
+        
+    </script>
+    
 </body>
 
 </html>
