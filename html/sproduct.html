@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-sacle=1.0">
-    <title>TeteeShop</title>
+    <title id="titletop">TeteeShop</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
     <link rel="stylesheet" href="/css/style.css">
     
 </head>
 
 <body>
-    <script src="script.js"></script>
     <section id = "header">
         <a href="#"><img src="img/" class="logo" alt=""></a><!--Logo website-->
         <div>
             <ul id="navbar">
                 <li><a href="/html/index.html">Home</a></li>
-                <li><a class="active" href="/html/shop.html">shop</a></li>
+                <li><a class="active" href="/html/shop.html">Shop</a></li>
                 <li><a href="/html/signup.html">Sign Up</a></li>
                 <li><a href="/html/login.html">Login</a></li>
                 <li><a href="/html/cart.html"><img id="bar"  src="/img/shopping-cart.png"  width="20"></a></li><!--cart ยังทำไม่ได้ไม่รู้เป็นไรเดี่ยวมาทำ-->
@@ -30,27 +29,21 @@
 
         </div>
         
+<!---------------------------------Main Page--------------------------------->
+
     </section>
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image">
-            <img src="/img/clothestest.jpg" width="100%" id="MainImg" alt="">
-
-            <div class="small-img-group">
-                <div class="small-img-col">
-                    <img src="/img/clothestest2.jpg" width="100%" class="small-img" alt="">
-                </div>
-                <div class="small-img-col">
-                    <img src="/img/clothestest4.jpg" width="100%" class="small-img" alt="">
-                </div>
-                <div class="small-img-col">
-                    <img src="/img/clothestest5.jpg" width="100%" class="small-img" alt="">
-                </div>
-            </div>
+            <img width="100%" id="bigimg" alt="">
         </div>
         <div class="single-pro-details">
-            <h6>Home / T-Shirt</h6>
-            <h4>Men's Feasion T-Shirt</h4>
-            <h2>200 Bath</h2>
+            <a href="/html/index.html"> Home</a>
+            <b> /</b>
+            <a href="/html/shop.html"> Shop</a>
+            <b> /</b>
+            <a id="titlelil"></a>
+            <h1 id="title"></h1>
+            <h4 id="price"></h4>
             <select>
                 <option>Select Size</option>
                 <option>XL</option>
@@ -61,20 +54,13 @@
             <input type="number" value="1">
             <button  class="normal">Add To Cart</button>
             <h4>Product Details</h4>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                labore et dolore magna aliqua. In ornare quam viverra orci. Turpis massa sed elementum tempus 
-                egestas sed sed. Venenatis a condimentum vitae sapien pellentesque. Eu volutpat odio facilisis 
-                mauris sit amet massa. Egestas integer eget aliquet nibh praesent tristique magna. Lectus 
-                vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare. Sagittis orci a 
-                scelerisque purus semper eget. Ornare arcu odio ut sem nulla pharetra. Habitant morbi tristique senectus et 
-                netus. Molestie a iaculis at erat pellentesque adipiscing. Vitae ultricies leo integer malesuada nunc vel risus 
-                commodo viverra. Eget nunc lobortis mattis aliquam faucibus purus in. Morbi quis commodo odio aenean. Proin 
-                fermentum leo vel orci porta non pulvinar neque laoreet. Nullam ac tortor vitae purus faucibus. Porttitor rhoncus 
-                dolor purus non enim praesent elementum facilisis.
+            <span id="description">
             </span>
             
         </div>
-        
+
+<!-----------------------------------------------Featured Products--------------------------------------->
+
     </section>
     <section id = "product1" class="section-p1">
         <h2>Featured Products</h2>
@@ -201,21 +187,55 @@
 
     </footer>
     <script>
-        var MainImg = document.getElementById("MainImg");
-        var smalling = document.getElementsByClassName("small-img");
 
-        smallimg[0].onclick = function(){
-            MainImg.src = smallimg[0].src;
+        let product = null;
+
+        window.onload = function () {
+            product = localStorage.Product;
+            if (product) {
+                product = JSON.parse(product);
+                LoadProduct();
+            }
         }
-        smallimg[1].onclick = function(){
-            MainImg.src = smallimg[1].src;
+
+        function LoadProduct() {
+            document.getElementById("titlelil").innerHTML = product.ProductTitle;
+            document.getElementById("titletop").innerHTML = product.ProductTitle;
+            document.getElementById("bigimg").src = product.LinksOfImages[0];
+            document.getElementById("title").innerHTML = product.ProductTitle;
+            document.getElementById("description").innerHTML = product.Description;
+            document.getElementById("price").innerHTML = product.Price + " Thai baht";
+            // GenLi();
+            //GenImgs();
         }
-        smallimg[2].onclick = function(){
-            MainImg.src = smallimg[2].src;
-        }
-        smallimg[3].onclick = function(){
-            MainImg.src = smallimg[3].src;
-        }
+
+        // function GenLi() {
+        //     product.Points.forEach(html => {
+        //         if (html.lenght > 1) {
+        //             var li = document.createElement('li');
+        //             li.innerHTML = html;
+        //             document.getElementById('points').append(li);
+        //         }
+        //     });
+        // }
+
+        // function GenImgs() {
+        //     let i = 1;
+        //     let html = '';
+        //     product.LinksOfImages.forEach(Imglink => {
+        //         let img = document.createElement('img');
+        //         img.src = Imglink;
+        //         img.classList.add("smimgs", "mr-2", "mb-2");
+        //         img.id = 'im' + (i++);
+        //         img.addEventListener('click', ChangeBigImg);
+        //         document.getElementById('smlimgsDiv').append(img);
+        //     });
+        // }
+
+        // function ChangeBigImg(event) {
+        //     let elem = document.getElementById(event.target.id);
+        //     document.getElementById('bigimg').src = elem.src;
+        // }
 
     </script>
 

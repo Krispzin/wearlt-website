@@ -73,13 +73,13 @@
     <select id="catinp">
         <option value="shirt">shirt</option>
         <option value="t-shirt">t-shirt</option>
-        <option value="pants">pants</option>
         <option value="hoodie">hoodie</option>
     </select><br><br>
     <!-- <label>Points #1</label> <input type="text" id="p1inp" class="pointers"><br><br>
     <label>Points #2</label> <input type="text" id="p2inp" class="pointers"><br><br>
     <label>Points #3</label> <input type="text" id="p3inp" class="pointers"><br><br>
     <label>Points #4</label> <input type="text" id="p4inp" class="pointers"><br><br> -->
+    
 
     <label id="pdlab">Product Description</label> <textarea id="desarea"></textarea><br><br>
 
@@ -89,8 +89,8 @@
         <label></label><label id='loadlab'>uploading 1 of 3</label>
         <button id="addprodbtn">Add Products</button>
         <button id="selimgsbtn">Select Images</button>
+        <button id="removebtn">Remove Images</button>
     </div>
-
 
     <script type="module">
         
@@ -101,6 +101,7 @@
         const imgdiv = document.getElementById('imagesDiv');
         const selBtn = document.getElementById('selimgsbtn');
         const addBtn = document.getElementById('addprodbtn');
+        const remBtn = document.getElementById('removebtn');
         const proglab = document.getElementById('loadlab');
 
         const name = document.getElementById('nameinp');
@@ -154,12 +155,10 @@
                     img.src = FileReaders[i].result;
                     imgdiv.append(img);
                 }
-
                 FileReaders[i].readAsDataURL(Files[i]);
             }
-
             let lab = document.getElementById('label');
-            lab.innerHTML = 'clear img';
+            lab.innerHTML ='clear images';
             lab.style = 'cursor:pointer; display:block ;color:navy ; font-size:12px';
             lab.addEventListener('click', ClearImages);
             imgdiv.append(lab);
@@ -204,6 +203,8 @@
 
         selBtn.addEventListener('click', OpenFileDialog);
         addBtn.addEventListener('click', UploadAllImages);
+        remBtn.addEventListener('click', ClearImages);
+
         
 //---------------------------UPLOAD IMAGE TO FIREBASE-------------------------------//
         function UploadAllImages(){
@@ -258,13 +259,13 @@
         
 
         const firebaseConfig = {
-            apiKey: "AIzaSyBrMehVkwzcv_U4aXpnCclwmSWWTJ-ucNU",
-            authDomain: "wearitagain-c0f31.firebaseapp.com",
-            databaseURL: "https://wearitagain-c0f31-default-rtdb.asia-southeast1.firebasedatabase.app/",
-            projectId: "wearitagain-c0f31",
-            storageBucket: "wearitagain-c0f31.appspot.com",
-            messagingSenderId: "526909210632",
-            appId: "1:526909210632:web:318aad8a559803f46a11bd"
+            apiKey: "AIzaSyBChr-7kEA30C5KceoYF0bA2LMCoHzWXzE",
+            authDomain: "wearit-f97b1.firebaseapp.com",
+            databaseURL: "https://wearit-f97b1-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "wearit-f97b1",
+            storageBucket: "wearit-f97b1.appspot.com",
+            messagingSenderId: "225288076004",
+            appId: "1:225288076004:web:755e446f713c543fd14af1"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -296,6 +297,8 @@
         }
         
     </script>
+<br><br>
+<a class = "active" href="/html/index.html">Home</a>
 </body>
 
 

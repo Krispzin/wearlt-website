@@ -78,35 +78,31 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a id="catlink" href="#">sdfsdf</a></li>
-                <li id="titleli" class="breadcrumb-item active" aria-current="page">dsadasdasdasd</li>
+                <li class="breadcrumb-item"><a id="catlink" href="#"></a></li>
+                <li id="titleli" class="breadcrumb-item active" aria-current="page"></li>
             </ol>
         </nav>
 
         <div class="contentsDiv">
             <div id="imgsDiv" class="mr-5">
                 <div id="bigimgDiv">
-                    <img id="bigimg" src="/img/clothestest.jpg" width="200">
+                    <img id="bigimg" width="200">
                 </div>
                 <div id="smlimgDiv">
-                    <img class="smimgs" src="/img/clothestest2.jpg">
-                    <img class="smimgs" src="/img/clothestest4.jpg">
-
                 </div>
             </div>
             <div id="detailsDiv">
-                <h4 id="title">dadadsadasd</h4>
-                <ul id="points">
-                    <!-- <li>dsadasdasdadwd</li>
+                <h4 id="title">       </h4>
+                <!-- <ul id="points">
                     <li>dsadasdasdadwd</li>
                     <li>dsadasdasdadwd</li>
-                    <li>dsadasdasdadwd</li> -->
-
-                </ul>
+                    <li>dsadasdasdadwd</li>
+                    <li>dsadasdasdadwd</li>
+                </ul> -->
                 <p id="description">
                     <!-- dsadwadsawdsawdsawd -->
                 </p>
-                <h3 id="price">111</h3>
+                <h3 id="price">  </h3>
                 <div id="btnDiv">
                     <button class="btn btn-lg btn-warning mr-2">Add To Cart</button>
                     <button class="btn btn-lg btn-warning mr-2">Buy Now</button>
@@ -129,44 +125,44 @@
         }
 
         function LoadProduct() {
-            document.getElementById("titleLi").innerHTML = product.ProductTitle;
+            document.getElementById("titleli").innerHTML = product.ProductTitle;
             document.getElementById("titletop").innerHTML = product.ProductTitle;
             document.getElementById("catlink").innerHTML = product.Category;
             document.getElementById("bigimg").src = product.LinksOfImages[0];
             document.getElementById("title").innerHTML = product.ProductTitle;
             document.getElementById("description").innerHTML = product.Description;
-            document.getElementById("price").innerHTML = product.Price + "Thai baht";
-            GenLi();
-            GenImgs();
+            document.getElementById("price").innerHTML = product.Price + " Thai baht";
+            // GenLi();
+            //GenImgs();
         }
 
-        function GenLi() {
-            product.Points.forEach(html => {
-                if (html.lenght > 1) {
-                    var li = document.createElement('li');
-                    li.innerHTML = html;
-                    document.getElementById('points').append(li);
-                }
-            });
-        }
+        // function GenLi() {
+        //     product.Points.forEach(html => {
+        //         if (html.lenght > 1) {
+        //             var li = document.createElement('li');
+        //             li.innerHTML = html;
+        //             document.getElementById('points').append(li);
+        //         }
+        //     });
+        // }
 
-        function GenImgs() {
-            let i = 1;
-            let html = '';
-            product.LinksOfImages.forEach(imglink => {
-                let img = document.createElement('img');
-                img.src = imglink;
-                img.classList.add("smimgs", "mr-2", "mb-2");
-                img.id = 'im' + (i++);
-                img.addEventListener('click', ChangeBigImg);
-                document.getElementById('smlimgsDiv').append(img);
-            });
-        }
+        // function GenImgs() {
+        //     let i = 1;
+        //     let html = '';
+        //     product.LinksOfImages.forEach(Imglink => {
+        //         let img = document.createElement('img');
+        //         img.src = Imglink;
+        //         img.classList.add("smimgs", "mr-2", "mb-2");
+        //         img.id = 'im' + (i++);
+        //         img.addEventListener('click', ChangeBigImg);
+        //         document.getElementById('smlimgsDiv').append(img);
+        //     });
+        // }
 
-        function ChangeBigImg(event) {
-            let elem = document.getElementById(event.target.id);
-            document.getElementById('bigimg').src = elem.src;
-        }
+        // function ChangeBigImg(event) {
+        //     let elem = document.getElementById(event.target.id);
+        //     document.getElementById('bigimg').src = elem.src;
+        // }
 
     </script>
 </body>

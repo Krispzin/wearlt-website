@@ -82,7 +82,7 @@
 
     <div id="productsDiv" class="container">
     </div>
-    <h1 id="array"></h1>
+
 
     <script type="module">
 
@@ -185,7 +185,7 @@
         function GetProductIndex(id) {
             var indstart = id.indexOf('-') + 1;
             var indend = id.length;
-            return Number(id.substring(indstart, indend));
+            return id.substring(indstart, indend);
         }
 
         function GotoProductDetails(event) {
