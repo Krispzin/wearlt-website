@@ -148,17 +148,17 @@
             OuterDiv.append(newProd);
         }
 
-        function GetUl(array){
-            let ul = document.createElement('ul');
-            ul.classList.add('points');
+        // function GetUl(array){
+        //     let ul = document.createElement('ul');
+        //     ul.classList.add('points');
 
-            array.forEach(element => {
-                let li = document.createElement('li');
-                li.innerText=element;
-                ul.append(li);
-            });
-            return ul.outerHTML;
-        }
+        //     array.forEach(element => {
+        //         let li = document.createElement('li');
+        //         li.innerText=element;
+        //         ul.append(li);
+        //     });
+        //     return ul.outerHTML;
+        // }
 
         function getShortTitle(title){
         if(title.length > 49) title = title.substring(0,47);
@@ -166,20 +166,20 @@
         return title + "...";
         }
 
-        function GenerateStockLabel(stock){
-            let stocklabel = document.createElement('h5');
-            stocklabel.classList.add('stock');
+        // function GenerateStockLabel(stock){
+        //     let stocklabel = document.createElement('h5');
+        //     stocklabel.classList.add('stock');
             
-            if(stock > 0){
-                stocklabel.innerHTML = 'In Stock';
-                stocklabel.classList.add('text-success');
-            }
-            else{
-                stocklabel.innerHTML = 'Out of Stock';
-                stocklabel.classList.add('text-warning');
-            }
-            return stocklabel.outerHTML;
-        }
+        //     if(stock > 0){
+        //         stocklabel.innerHTML = 'In Stock';
+        //         stocklabel.classList.add('text-success');
+        //     }
+        //     else{
+        //         stocklabel.innerHTML = 'Out of Stock';
+        //         stocklabel.classList.add('text-warning');
+        //     }
+        //     return stocklabel.outerHTML;
+        // }
 
 
 </script>

@@ -11,7 +11,7 @@ const firebaseConfig = {
 
 
 
-firebase.initialzeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 var contactDataShirtdb = firebase.database().ref("dataOrder");
 document.getElementById("dataOrder").addEventListener("Add To Cart", submitOrder);
