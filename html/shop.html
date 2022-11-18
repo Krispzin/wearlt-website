@@ -209,7 +209,7 @@
 
             `
             <div class="pro" id="pro-`+ index +`">
-                <img src="`+ product.LinksOfImages[0] + `" alt="" width="">
+                <img class="image" src="`+ product.LinksOfImages[0] + `" alt="" width="">
                 <div class="des">
                     <span>`+ product.Category +`</span>
                     <h5>`+ product.ProductTitle +`</h5>
@@ -272,9 +272,11 @@
 
         function AssignAllEvent() {
             var probtns = document.getElementsByClassName('pro');
+            var imgbtn = document.getElementsByClassName('image');
 
             for (let i = 0; i < probtns.length; i++) {
                 probtns[i].addEventListener('click', GotoProductDetails);
+                imgbtn[i].addEventListener('click', GotoProductDetails);
             }
         }
         

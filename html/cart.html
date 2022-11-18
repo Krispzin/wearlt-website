@@ -15,18 +15,9 @@
 
 </head>
 
-<!--  ---------------- header ---------------- -->
+
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.14.0/firebase-app.js" integrity="sha512-ewOP2Avv5hrFQDlXexYadiPL71H0SF5jWcGNJcDXEGhsIjDe9e5y6kjZBikuK3YIWkV8WBO9tr1JwtDG07tpkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <script src="/js/cart_config.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.8/dist/sweetalert2.all.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
-
-
-
+<!--  ---------------- header ---------------- -->
     <section id = "header">
         <a href="#"><img src="/img/" class="logo" alt=""></a><!--Logo website-->
         <div>
@@ -59,77 +50,58 @@
                     <td>Quantity</td>
                     <td>Subtotal</td>
                 </tr>
-            </thead>
+            </thead>    
+
+            <tbody id="tbody">
+                <!-- <tr>
+                    <td><img  href="#" src="/img/close.png" class="cancelitemcart" width="10"></td>
+                    <td><img src="/img/clothestest.jpg" alt="" ></td>
+                    <td>Cartoon Astronaut T-Shirts</td>
+                    <td>200 Bath</td>
+                    <td><input type="number" value="1"></td>
+
+                </tr> -->
+            </tbody>
 
 
+
+    <script type="module">
+        
+//-----------------------------IMPORT Firebase---------------------------------//
+        
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBChr-7kEA30C5KceoYF0bA2LMCoHzWXzE",
+            authDomain: "wearit-f97b1.firebaseapp.com",
+            databaseURL: "https://wearit-f97b1-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "wearit-f97b1",
+            storageBucket: "wearit-f97b1.appspot.com",
+            messagingSenderId: "225288076004",
+            appId: "1:225288076004:web:755e446f713c543fd14af1"
+        };
+
+        const app = initializeApp(firebaseConfig);
+
+// --------------------import database functions---------------------//
+
+
+        import { getDatabase, ref, set, child, get }
+            from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+        const realdb = getDatabase();
+
+        var CartTBody = document.getElementById("tbody");
+        var ArrayOfCarts = [];
+        window.addEventListener('load', GetAllCarts);
+
+        function GetAllCarts(){
             
-            <div class="container">
-                <div class="row"> 
-                    <h2>Products</h2>
-                </div>
-                <div class="row" id ="row1">
-                </div>
-                <div class="row">
-                    <h3>Shopping cart</h3>
-                </div>
-                <div class="row" id ="row2">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Remove</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableProducts">
-                    </table>    
-            </div>
 
-
-
-
-
-            <tbody id="cart-body">
-            <script>
-                function add(id) {
-                for(let index=0;index<products.length;index++) {
-                if(products[index].id != id || products[index].cart==true){
-
-                } else {
-                products[index].cart = true;
-                con2.push(products[index].id);
-                document.getElementById('tableProducts').innerHTML += `
-                <tr>
-                <th scope="row">${con+1}</th>
-                <td><button class="btn btn-danger" onclick="remove(${products[index].id})">Remove</button></td>
-                <td><img style="width: 5rem;" src="${products[index].img}"></td>
-                <td>${products[index].name}</td>
-                <td>
-                <button class="btn btn-primary" onclick="reduceAmount(${products[index].id})">-</button>
-                <input style="width: 2rem;" id="${products[index].id}" value="${products[index].quantity}" disabled>
-                <button class="btn btn-primary" onclick="addAmount(${products[index].id})">+</button>
-                </td>
-                </tr>
-                `;
-
-                con++;
-                products[index].total = products[index].price * products[index].quantity;
         }
-    }
-    document.getElementById('total').innerHTML =`
-    <tr>
 
-    </tr>
-    `
-}
-            </script>
-            </tbody> 
+    </script>
             
-
-
             <!-- แบบ hard code ที่ไอไอซ์ทำไว้ 
             <tbody>
                 <tr>
