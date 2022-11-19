@@ -66,22 +66,19 @@
 
 
     <section id="add-cart">
-        
-        </div>
         <div id="subtotal">
             <table>
-                <tr>
-                </tr>
                 <tr>
                     <td>Shipping</td>
                     <td>Free</td>
                 </tr>
                 <tr>
                     <td><strong>Totals</strong></td>
-                    <td id="total"><strong></strong></td>
+                    <td id="total"><strong>0 baht</strong></td>
                 </tr>
             </table>
             <button class="normal" id="checkoutbtn">Proceed to Checkout</button>
+            <button class="normal" id="removeall">Remove All Item(s)</button>
         </div>
     </section>
 
@@ -188,7 +185,7 @@
                 html += 
                 `
                 <tr>
-                    <td class="canceltr" id="rembtn-`+ inx +`"><button class="cancelpic" id="rempic-`+ inx +`" width="150"></td>
+                    <td class="canceltr" id="remtr-`+ inx +`"></td>
                     <td><img src="`+ getcart[i].Imglink +`" alt="" ></td>
                     <td>`+ getcart[i].Product +`</td>
                     <td>`+ getcart[i].Price +` Baht</td>
@@ -246,29 +243,24 @@
             return id.substring(indstart, indend);
         }
 
-        function DoRemoveItemCart(event){
-            // let inx = GetProductIndex(event.target.id);
-            // var getcart = JSON.parse(localStorage.getItem("cart"));
-            // getcart.splice(inx, 1);
-            // console.log(getcart);
-            // getcart = JSON.stringify(getcart);
-            // localStorage.setItem("cart", getcart);
-
-            let inx = GetProductIndex(event.target.id);
-            var getcart = JSON.parse(localStorage.getItem("cart"));
-            console.log(getcart.id);
-            
+        function DoRemoveItem(){
+            let tryrem = JSON.parse(localStorage.getItem("cart"));
+            let id = event.target.id;
+            let index = GetProductIndex(id);
+            tryrem.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(tryrem));
+            AddAllCarts();
         }
 
-        function AssignRemoveItemCart(){
-            let removetr = document.getElementsByClassName("canceltr");
-            let removepic = document.getElementsByClassName("cancelpic");
-
-            for (let i = 0; i < removetr.length; i++) {
-                removetr[i].addEventListener("click", DoRemoveItemCart);
-                removepic[i].addEventListener("click", DoRemoveItemCart);
-            }
+        function DoRemoveAll(){
+            localStorage.removeItem("cart");
+            AddAllCarts();
+            window.location.reload();
         }
+
+        const rembtn = document.getElementById("removeall");
+
+        rembtn.addEventListener("click", DoRemoveAll);
 
         const btncheckout = document.getElementById("checkoutbtn");
 
