@@ -66,39 +66,6 @@
 
 
     <script type="module">
-        
-//-----------------------------IMPORT Firebase---------------------------------//
-        
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
-
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyBChr-7kEA30C5KceoYF0bA2LMCoHzWXzE",
-            authDomain: "wearit-f97b1.firebaseapp.com",
-            databaseURL: "https://wearit-f97b1-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "wearit-f97b1",
-            storageBucket: "wearit-f97b1.appspot.com",
-            messagingSenderId: "225288076004",
-            appId: "1:225288076004:web:755e446f713c543fd14af1"
-        };
-
-        const app = initializeApp(firebaseConfig);
-
-// --------------------import database functions---------------------//
-
-
-        import { getDatabase, ref, set, child, get }
-            from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
-        const realdb = getDatabase();
-
-        var CartTBody = document.getElementById("tbody");
-        var ArrayOfCarts = [];
-        window.addEventListener('load', GetAllCarts);
-
-        function GetAllCarts(){
-            
-
-        }
 
     </script>
             

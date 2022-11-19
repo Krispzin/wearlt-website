@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html land="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-sacle=1.0">
     <title id="titletop">TeteeShop</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
-    <link rel="stylesheet" href="/css/style.css">
-    
+    <link rel="stylesheet" href="/css/style.css"> 
+
 </head>
 
 <body>
-    <section id = "header">
-        <!-- <a href="#"><img src="img/" class="logo" alt=""></a>Logo website -->
+    <section id="header">
+        <a href="#"><img src="" class="logo" alt=""></a>
         <div>
             <ul id="navbar">
                 <li><a href="/html/index.html">Home</a></li>
                 <li><a class="active" href="/html/shop.html">Shop</a></li>
-                <li><a href="/html/signup.html">Sign Up</a></li>
-                <li><a href="/html/login.html">Login</a></li>
-                <li><a href="/html/cart.html"><img id="bar"  src="/img/shopping-cart.png"  width="20"></a></li><!--cart ยังทำไม่ได้ไม่รู้เป็นไรเดี่ยวมาทำ-->
-                <img id="close" href="#" src="/img/close.png"  width="10">
+                <li><a href="/html/signup.html" id="signuplink">Sign Up</a></li>
+                <li><a href="/html/login.html" id="loginlink">Login</a></li>
+                <li><a href="/html/cart.html"><img id="bar" src="/img/shopping-cart.png" width="20"></a></li>
+                <!--cart ยังทำไม่ได้ไม่รู้เป็นไรเดี่ยวมาทำ-->
+                <img id="close" href="#" src="/img/close.png" width="10">
             </ul>
         </div>
         <div id="mobile">
-            
-            <img id="bar" src="/img/outdent.png"  width="20">
+
+            <img id="bar" src="/img/outdent.png" width="20">
 
         </div>
-        
-<!---------------------------------Main Page--------------------------------->
-
     </section>
+        <!---------------------------------Main Page--------------------------------->
+
+
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image">
             <img width="100%" id="bigimg" alt="">
         </div>
+
         <div class="single-pro-details">
             <a href="/html/index.html"> Home</a>
             <b> /</b>
             <a href="/html/shop.html"> Shop</a>
             <b> /</b>
+
             <a id="titlelil"></a>
             <h1 id="title"></h1>
+
             <h4 id="price"></h4>
             <select>
                 <option>Select Size</option>
@@ -51,18 +56,21 @@
                 <option>Small</option>
                 <option>Large</option>
             </select>
+
             <input type="number" placeholder="1" id="itemNum">
-            <button  class="normal" id="AddCartbtn">Add To Cart</button>
+
+            <button class="normal" id="AddCartbtn">Add To Cart</button>
+
             <h4>Product Details</h4>
             <span id="description">
             </span>
-            
+
         </div>
 
-<!-----------------------------------------------Featured Products--------------------------------------->
+        <!-----------------------------------------------Featured Products--------------------------------------->
 
     </section>
-    <section id = "product1" class="section-p1">
+    <section id="product1" class="section-p1">
         <h2>Featured Products</h2>
         <p>Summer Collection New Morden Design</p>
         <div class="pro-container">
@@ -80,24 +88,7 @@
                     </div>
                     <h4>$67</h4>
                 </div>
-                <a href="#"><img  src="/img/shopping-cart.png" class="cart" width="1"></a>
-            </div>
-            
-            <div class="pro" onclick="window.location.href='shop.html';">
-                <img src="/img/clothestest.jpg" alt="" width="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>T-shirts</h5>
-                    <div class="star">
-                        <i class="fas fa-star "></i>
-                        <i class="fas fa-star "></i>
-                        <i class="fas fa-star "></i>
-                        <i class="fas fa-star "></i>
-                        <i class="fas fa-star "></i>
-                    </div>
-                    <h4>$67</h4>
-                </div>
-                <a href="#"><img  src="/img/shopping-cart.png" class="cart" width="1"></a>
+                <a href="#"><img src="/img/shopping-cart.png" class="cart" width="1"></a>
             </div>
 
             <div class="pro" onclick="window.location.href='shop.html';">
@@ -114,9 +105,9 @@
                     </div>
                     <h4>$67</h4>
                 </div>
-                <a href="#"><img  src="/img/shopping-cart.png" class="cart" width="1"></a>
+                <a href="#"><img src="/img/shopping-cart.png" class="cart" width="1"></a>
             </div>
-            
+
             <div class="pro" onclick="window.location.href='shop.html';">
                 <img src="/img/clothestest.jpg" alt="" width="">
                 <div class="des">
@@ -131,174 +122,140 @@
                     </div>
                     <h4>$67</h4>
                 </div>
-                <a href="#"><img  src="/img/shopping-cart.png" class="cart" width="1"></a>
+                <a href="#"><img src="/img/shopping-cart.png" class="cart" width="1"></a>
+            </div>
+
+            <div class="pro" onclick="window.location.href='shop.html';">
+                <img src="/img/clothestest.jpg" alt="" width="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>T-shirts</h5>
+                    <div class="star">
+                        <i class="fas fa-star "></i>
+                        <i class="fas fa-star "></i>
+                        <i class="fas fa-star "></i>
+                        <i class="fas fa-star "></i>
+                        <i class="fas fa-star "></i>
+                    </div>
+                    <h4>$67</h4>
+                </div>
+                <a href="#"><img src="/img/shopping-cart.png" class="cart" width="1"></a>
             </div>
         </div>
+
+
+        </div>
+
+        <footer class="section-p1">
+            <div class="col">
+                <!-- <img class="logo" src="img/" alt=""> -->
+                <h4>Contact</h4>
+                <p><strong>Address: </strong>Bangkok Thailand</p>
+                <p><strong>Phone: </strong>021111111 / 0311112222</p>
+                <p><strong>Hours: </strong>10:00 - 18:00,Mon - Sat</p>
+                <div class="follow">
+                    <h4>Follow us</h4>
+                    <div class="icon">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-youtube"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-pinterest-p"></i>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col">
+                <h4>About</h4>
+                <a href="#">About Us</a>
+                <a href="#">Delivery Information</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact Us</a>
+
+            </div>
+            <div class="col">
+                <h4>My Accout</h4>
+                <a href="#">Sing In</a>
+                <a href="#">View Cart</a>
+                <a href="#">My Wishlist</a>
+                <a href="#">Track My Order</a>
+                <a href="#">Help</a>
+
+            </div>
+            <div class="col install">
+                <h4>Install App</h4>
+                <p>Form App Store or Google Play</p>
+            </div>
+            <div class="copyright">
+                <p>2021, Tech2 etc - HTML CSS Ecommerce Template</p>
+
+            </div>
+        </footer>
+
         
-        
-    </div>
+        <script type="module">
 
-    <footer class="section-p1">
-        <div class="col">
-            <!-- <img class="logo" src="img/" alt=""> -->
-            <h4>Contact</h4>
-            <p><strong>Address: </strong>Bangkok Thailand</p>
-            <p><strong>Phone: </strong>021111111 / 0311112222</p>
-            <p><strong>Hours: </strong>10:00 - 18:00,Mon - Sat</p>
-            <div class="follow">
-                <h4>Follow us</h4>
-                <div class="icon">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-youtube"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-pinterest-p"></i>
-                </div>
+            let product = null;
 
-            </div>
-        </div>
-        <div class="col">
-            <h4>About</h4>
-            <a href="#">About Us</a>
-            <a href="#">Delivery Information</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Contact Us</a>
-
-        </div>
-        <div class="col">
-            <h4>My Accout</h4>
-            <a href="#">Sing In</a>
-            <a href="#">View Cart</a>
-            <a href="#">My Wishlist</a>
-            <a href="#">Track My Order</a>
-            <a href="#">Help</a>
-
-        </div>
-        <div class="col install">
-            <h4>Install App</h4>
-            <p>Form App Store or Google Play</p>
-        </div>
-        <div class="copyright">
-            <p>2021, Tech2 etc - HTML CSS Ecommerce Template</p>
-
-        </div>
-
-
-    </footer>
-    <script type="module">
-
-//--------------------------------IMPORT + CONFIGURATION-------------------------------//
-
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
-
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyBChr-7kEA30C5KceoYF0bA2LMCoHzWXzE",
-            authDomain: "wearit-f97b1.firebaseapp.com",
-            databaseURL: "https://wearit-f97b1-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "wearit-f97b1",
-            storageBucket: "wearit-f97b1.appspot.com",
-            messagingSenderId: "225288076004",
-            appId: "1:225288076004:web:755e446f713c543fd14af1"
-        };
-
-        const app = initializeApp(firebaseConfig);
-
-// --------------------import database functions---------------------//
-
-
-        import { getDatabase, ref, set, child, get }
-            from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
-        const realdb = getDatabase();
-
-//---------------------------Cart Function---------------------------------//
-
-        // const cartbtn = document.getElementById("AddCartbtn");
-        // const itemnum = document.getElementById("itemNum");
-
-        // function FindSumPrice() {
-        //     var sum = 0;
-        //     var price = document.getElementById("price");
-        //     for (var i = 0; i < price.value; i++) {
-        //         sum += parse(price[i].innerHTML);
-        //     }
-        //     return sum;
-        // }
-
-        // function addCart() {
-        //     const cartref = ref(realdb);
-
-        //     get(child(cartref, 'CartOrder/'+ )).then((snapshot) => {
-        //         if (snapshot.exists()) {
-        //             console.log(snapshot.val());
-        //             itemnum.innerHTML = snapshot.val();
-        //         } else {
-        //             set(ref(realdb, 'CartOrder/'),{
-        //                 Item: product.ProductTitle,
-        //                 Quantity: itemnum.value,
-        //                 Price: product.ProductPrice
-        //             });
-        //         }
-        //     }).catch((error) => {
-        //         console.error(error);
-        //     });
-        // }
-
-//-----------------------------FUNCTIONS---------------------------------//
-
-        let product = null;
-
-        window.onload = function () {
-            product = localStorage.Product;
-            if (product) {
-                product = JSON.parse(product);
-                LoadProduct();
+            window.onload = function () {
+                product = localStorage.getItem("Product");
+                if (product) {
+                    product = JSON.parse(product);
+                    LoadProduct();
+                }
             }
-        }
 
-        function LoadProduct() {
-            document.getElementById("titlelil").innerHTML = product.ProductTitle;
-            document.getElementById("titletop").innerHTML = product.ProductTitle;
-            document.getElementById("bigimg").src = product.LinksOfImages[0];
-            document.getElementById("title").innerHTML = product.ProductTitle;
-            document.getElementById("description").innerHTML = product.Description;
-            document.getElementById("price").innerHTML = product.Price + " Thai baht";
-            // GenLi();
-            //GenImgs();
-        }
 
-        // function GenLi() {
-        //     product.Points.forEach(html => {
-        //         if (html.lenght > 1) {
-        //             var li = document.createElement('li');
-        //             li.innerHTML = html;
-        //             document.getElementById('points').append(li);
-        //         }
-        //     });
-        // }
+            function LoadProduct() {
+                document.getElementById("titlelil").innerHTML = product.ProductTitle;
+                document.getElementById("titletop").innerHTML = product.ProductTitle;
+                document.getElementById("bigimg").src = product.LinksOfImages[0];
+                document.getElementById("title").innerHTML = product.ProductTitle;
+                document.getElementById("description").innerHTML = product.Description;
+                document.getElementById("price").innerHTML = product.Price + " Thai baht";
+            }
 
-        // function GenImgs() {
-        //     let i = 1;
-        //     let html = '';
-        //     product.LinksOfImages.forEach(Imglink => {
-        //         let img = document.createElement('img');
-        //         img.src = Imglink;
-        //         img.classList.add("smimgs", "mr-2", "mb-2");
-        //         img.id = 'im' + (i++);
-        //         img.addEventListener('click', ChangeBigImg);
-        //         document.getElementById('smlimgsDiv').append(img);
-        //     });
-        // }
+        </script>
 
-        // function ChangeBigImg(event) {
-        //     let elem = document.getElementById(event.target.id);
-        //     document.getElementById('bigimg').src = elem.src;
-        // }
 
-    </script>
+        <script>
 
-    <script src="/css/style.css"></script>
+            //--------------------------------ตัวแปล--------------------------------//
+
+            const signuplink = document.getElementById("signuplink");
+            const loginlink = document.getElementById("loginlink");
+            var currentuser = null;
+
+            //-------------------------------ฟังก์ชั่น-------------------------------//
+
+            function getUsername() {
+                currentuser = JSON.parse(sessionStorage.getItem("user"));
+            }
+
+            function Signout() {
+                sessionStorage.removeItem("user");
+                window.location = "index.html";
+            }
+
+            //--------------------------------เมื่อโหลด--------------------------------//
+
+            window.onload = function () {
+                getUsername();
+                if (currentuser != null) {
+                    signuplink.innerText = currentuser.name;
+                    signuplink.href = "#";
+
+                    loginlink.innerText = "Sign Out";
+                }
+
+                else {
+                    signuplink.innerText = "Sign Up";
+                    loginlink.innerText = "Login";
+                }
+            }
+
+        </script>
 </body>
 
 </html>

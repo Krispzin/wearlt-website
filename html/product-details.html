@@ -79,7 +79,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item"><a id="catlink" href="#"></a></li>
-                <li id="titleli" class="breadcrumb-item active" aria-current="page"></li>
+                <li id="titlelil" class="breadcrumb-item active" aria-current="page"></li>
             </ol>
         </nav>
 
@@ -108,24 +108,25 @@
                     <button class="btn btn-lg btn-warning mr-2">Buy Now</button>
                 </div>
             </div>
-
         </div>
     </div>
 
     <script>
 
-        let product = null;
 
-        window.onload = function () {
-            product = localStorage.Product;
-            if (product) {
-                product = JSON.parse(product);
-                LoadProduct();
+            let product = null;
+
+            window.onload = function () {
+                product = localStorage.getItem("Product");
+                if (product) {
+                    product = JSON.parse(product);
+                    setTimeout(LoadProduct, 100);
+                }
             }
-        }
+
 
         function LoadProduct() {
-            document.getElementById("titleli").innerHTML = product.ProductTitle;
+            document.getElementById("titlelil").innerHTML = product.ProductTitle;
             document.getElementById("titletop").innerHTML = product.ProductTitle;
             document.getElementById("catlink").innerHTML = product.Category;
             document.getElementById("bigimg").src = product.LinksOfImages[0];

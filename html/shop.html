@@ -43,15 +43,7 @@
 
 
         <div class="pro-container" id="productsDiv">
-            <!-- <div class="pro" onclick="window.location.href='/html/sproduct.html';">
-                <img src="/img/clothestest.jpg" alt="" width="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>T-shirts</h5>
-                    <h4>$67</h4>
-                </div>
-                <img  src="/img/shopping-cart.png" class="cart" width="1">
-            </div> -->
+            
         </div>
 
     
@@ -207,20 +199,23 @@
             // <button class="detbtns btn" id="detbtn-`+ index + `">View Details</button>
             // `
 
+            
+            // <div class="pro" id="pro-`+index+`">
             `
-            <div class="pro" id="pro-`+ index +`">
-                <img class="image" src="`+ product.LinksOfImages[0] + `" alt="" width="">
-                <div class="des">
-                    <span>`+ product.Category +`</span>
-                    <h5>`+ product.ProductTitle +`</h5>
-                    <h4>`+ product.Price +` ฿</h4>
+                <img class="image" id="image-`+ index +`" src="`+ product.LinksOfImages[0]+ `" alt="" width="">
+                <div class="des" id="des-`+ index +`">
+                    <span class="cat" id="cat-`+ index +`">`+ product.Category +`</span>
+                    <h5 class="ti" id="ti-`+ index +`">`+ product.ProductTitle +`</h5>
+                    <h4 class="price" id="price-`+ index +`">`+ product.Price +` ฿</h4>
                 </div>
-                <img src="/img/shopping-cart.png" class="cart" width="1">
-            </div>
+                <img src="/img/shopping-cart.png" class="cart" id="cart-`+ index +`" width="1">
             `
+            // </div>
+            
 
             let newProd = document.createElement('div');
-            newProd.classList.add('productcard');
+            newProd.classList.add('pro');
+            newProd.id = "pro-" + index;
             newProd.innerHTML = html;
             OuterDiv.append(newProd);
         }
@@ -265,18 +260,32 @@
         }
 
         function GotoProductDetails(event) {
-            var index = GetProductIndex(event.target.id);
-            localStorage.Product = JSON.stringify(ArrayOfProducts[index]);
+            var inx = GetProductIndex(event.target.id);
+            localStorage.setItem('Product', JSON.stringify(ArrayOfProducts[inx]));
+            // console.log(localStorage.getItem('Product'));
             window.location = 'sproduct.html';
         }
 
         function AssignAllEvent() {
             var probtns = document.getElementsByClassName('pro');
-            var imgbtn = document.getElementsByClassName('image');
+            var imgbtns = document.getElementsByClassName('image');
+            var desbtns = document.getElementsByClassName('des');
+            var catbtns = document.getElementsByClassName('cat');
+            var tibtns = document.getElementsByClassName('ti');
+            var pribtns = document.getElementsByClassName('price');
+            var cartbtns = document.getElementsByClassName('cart');
+
+
 
             for (let i = 0; i < probtns.length; i++) {
                 probtns[i].addEventListener('click', GotoProductDetails);
-                imgbtn[i].addEventListener('click', GotoProductDetails);
+                imgbtns[i].addEventListener('click', GotoProductDetails);
+                desbtns[i].addEventListener('click', GotoProductDetails);
+                catbtns[i].addEventListener('click', GotoProductDetails);
+                tibtns[i].addEventListener('click', GotoProductDetails);
+                pribtns[i].addEventListener('click', GotoProductDetails);
+                cartbtns[i].addEventListener('click', GotoProductDetails);
+                
             }
         }
         
