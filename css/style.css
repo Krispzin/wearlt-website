@@ -765,12 +765,7 @@ footer .copyright {
    padding: 12px 20px;
 }
 
-#subtotal {
-   width: 50%;
-   margin-bottom: 30px;
-   border: 1px solid #e2e9e2;
-   padding: 30px;
-}
+
 
 #subtotal table {
    border-collapse: collapse;

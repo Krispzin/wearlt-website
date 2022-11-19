@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-sacle=1.0">
-    <title>TeteeShop</title>
+    <title>Cart</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
     <link rel="stylesheet" href="/css/style.css">
     
@@ -48,7 +48,7 @@
                     <td>Product</td>
                     <td>Price</td>
                     <td>Quantity</td>
-                    <td>Subtotal</td>
+                    
                 </tr>
             </thead>    
 
@@ -62,61 +62,15 @@
 
                 </tr> -->
             </tbody>
-
-
-
-    <script type="module">
-
-    </script>
-            
-            <!-- แบบ hard code ที่ไอไอซ์ทำไว้ 
-            <tbody>
-                <tr>
-                    <td><img  href="#" src="/img/close.png" class="cancelitemcart" width="10"></td>
-                    <td><img src="/img/clothestest.jpg" alt="" ></td>
-                    <td>Cartoon Astronaut T-Shirts</td>
-                    <td>200 Bath</td>
-                    <td><input type="number" value="1"></td>
-
-                </tr>
-                <tr>
-                    <td><img  href="#" src="/img/close.png" class="cancelitemcart" width="10"></td>
-                    <td><img src="/img/clothestest.jpg" alt="" ></td>
-                    <td>Cartoon Astronaut T-Shirts</td>
-                    <td>200 Bath</td>
-                    <td><input type="number" value="1"></td>
-
-                </tr>
-                <tr>
-                    <td><img  href="#" src="/img/close.png" class="cancelitemcart" width="10"></td>
-                    <td><img src="/img/clothestest.jpg" alt="" ></td>
-                    <td>Cartoon Astronaut T-Shirts</td>
-                    <td>200 Bath</td>
-                    <td><input type="number" value="1"></td>
-
-                </tr>
-            </tbody>
-            -->
-        </table>
     </section>
 
 
-
-
     <section id="add-cart">
-        <div id="coupon">
-            <h3>Apply Coupon</h3>
-            <div>
-                <input type="text" placeholder="Enter Your Coupon">
-                <button class="normal">Apply</button>
-            </div>
+        
         </div>
         <div id="subtotal">
-            <h3>Cart Totals</h3>
             <table>
                 <tr>
-                    <td>Cart Subtotal</td>
-                    <td>200 Bath</td>
                 </tr>
                 <tr>
                     <td>Shipping</td>
@@ -124,22 +78,12 @@
                 </tr>
                 <tr>
                     <td><strong>Totals</strong></td>
-                    <td><strong>600 Bath</strong></td>
+                    <td id="total"><strong></strong></td>
                 </tr>
             </table>
-            <button class="normal">Proceed to Checkout</button>
+            <button class="normal" id="checkoutbtn">Proceed to Checkout</button>
         </div>
     </section>
-
-
-
-
-
-
-
-
-
-
 
 
     <!--  ---------------- header ---------------- -->
@@ -196,7 +140,142 @@
     
     
     <script src="/css/style.css"></script>
-    <script src="/js/cart_config.js"></script>
+    <script type="module">
+
+//--------------------------------IMPORT + CONFIGURATION-------------------------------//
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBChr-7kEA30C5KceoYF0bA2LMCoHzWXzE",
+            authDomain: "wearit-f97b1.firebaseapp.com",
+            databaseURL: "https://wearit-f97b1-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "wearit-f97b1",
+            storageBucket: "wearit-f97b1.appspot.com",
+            messagingSenderId: "225288076004",
+            appId: "1:225288076004:web:755e446f713c543fd14af1"
+        };
+
+        const app = initializeApp(firebaseConfig);
+
+// --------------------import database functions---------------------//
+
+
+        import { getDatabase, ref, set, child, get }
+            from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+        const realdb = getDatabase();
+
+//---------------------------CartFunction---------------------------------//
+
+        let getcart = null;
+
+        var OuterTable = document.getElementById("tbody");
+        
+        window.onload = function() {
+            getcart = localStorage.getItem("cart");
+            if (getcart) {
+                getcart = JSON.parse(getcart);
+                AddAllCarts();
+            }
+        }
+
+        function AddAllCarts() {
+            let tbody = document.getElementById("tbody");
+            let html = "";
+            let inx = 0;
+            for (let i = 0; i < getcart.length; i++) {
+                html += 
+                `
+                <tr>
+                    <td class="canceltr" id="rembtn-`+ inx +`"><button class="cancelpic" id="rempic-`+ inx +`" width="150"></td>
+                    <td><img src="`+ getcart[i].Imglink +`" alt="" ></td>
+                    <td>`+ getcart[i].Product +`</td>
+                    <td>`+ getcart[i].Price +` Baht</td>
+                    <td>`+ getcart[i].item +`</td>
+                </tr>
+                `
+
+                inx++;
+            }
+            tbody.innerHTML = html;
+
+            document.getElementById("total").innerHTML = "<strong>" + numberWithCommas(FindTotal()) + " Baht" + "</strong>";
+
+        }
+        
+        function numberWithCommas(x) {
+            x = x.toString();
+            var pattern = /(-?\d+)(\d{3})/;
+            while (pattern.test(x))
+                x = x.replace(pattern, "$1,$2");
+            return x;
+        }
+
+        function FindTotal() {
+            let total = 0;
+            for (let i = 0; i < getcart.length; i++) {
+                total += Number(getcart[i].Price) * Number(getcart[i].item);
+            }
+            return total;
+        }
+
+        function makeid(length) {
+            var result           = '';
+            var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for ( var i = 0; i < length; i++ ) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+
+        function DoCheckOut(){
+            let FinCart = JSON.parse(localStorage.getItem("cart"));
+            set(ref(realdb, 'CartOrder/'+ makeid(15)),{
+                Order: FinCart,
+                Total: FindTotal()
+            });
+            alert("Order Success");
+            localStorage.removeItem("cart");
+        }
+
+        function GetProductIndex(id) {
+            var indstart = id.indexOf('-') + 1;
+            var indend = id.length;
+            return id.substring(indstart, indend);
+        }
+
+        function DoRemoveItemCart(event){
+            // let inx = GetProductIndex(event.target.id);
+            // var getcart = JSON.parse(localStorage.getItem("cart"));
+            // getcart.splice(inx, 1);
+            // console.log(getcart);
+            // getcart = JSON.stringify(getcart);
+            // localStorage.setItem("cart", getcart);
+
+            let inx = GetProductIndex(event.target.id);
+            var getcart = JSON.parse(localStorage.getItem("cart"));
+            console.log(getcart.id);
+            
+        }
+
+        function AssignRemoveItemCart(){
+            let removetr = document.getElementsByClassName("canceltr");
+            let removepic = document.getElementsByClassName("cancelpic");
+
+            for (let i = 0; i < removetr.length; i++) {
+                removetr[i].addEventListener("click", DoRemoveItemCart);
+                removepic[i].addEventListener("click", DoRemoveItemCart);
+            }
+        }
+
+        const btncheckout = document.getElementById("checkoutbtn");
+
+        btncheckout.addEventListener("click", DoCheckOut);
+
+
+    </script>
     <script>
 
 //--------------------------------ตัวแปล--------------------------------//

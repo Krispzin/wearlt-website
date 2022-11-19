@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-sacle=1.0">
-    <title id="titletop">TeteeShop</title>
+    <title id="titletop">WearIt</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
     <link rel="stylesheet" href="/css/style.css"> 
 
@@ -49,7 +49,7 @@
             <h1 id="title"></h1>
 
             <h4 id="price"></h4>
-            <select>
+            <select id="size">
                 <option>Select Size</option>
                 <option>XL</option>
                 <option>XXL</option>
@@ -57,7 +57,7 @@
                 <option>Large</option>
             </select>
 
-            <input type="number" placeholder="1" id="itemNum">
+            <input type="number" value="1" id="qty">
 
             <button class="normal" id="AddCartbtn">Add To Cart</button>
 
@@ -215,6 +215,44 @@
                 document.getElementById("description").innerHTML = product.Description;
                 document.getElementById("price").innerHTML = product.Price + " Thai baht";
             }
+
+//---------------------------------ตัวแปล สำหรับเก็บข้อมูลที่เราจะส่งไปยังหน้าตะกร้าสินค้า---------------------------------//
+
+            const addbtn = document.getElementById("AddCartbtn");
+            let qtyinp = document.getElementById("qty");
+            const sizeinp = document.getElementById("size");
+
+            let basket = JSON.parse(localStorage.getItem("cart")) || [];            
+
+            let tempro = localStorage.getItem("Product");
+            if (tempro) {
+                tempro = JSON.parse(tempro);
+            }
+
+
+
+            function addcart(tempro){
+                let search = basket.find((item) => item.id === tempro.id);
+
+                if(search === undefined){
+                    basket.push({
+                    id: tempro.id,
+                    item: Number(qtyinp.value),
+                    Product: tempro.ProductTitle,
+                    Imglink: tempro.LinksOfImages[0],
+                    Price: tempro.Price,
+                });
+                } else {
+                    search.item += Number(qtyinp.value);
+                }
+            }
+
+            addbtn.addEventListener("click", function () {
+                addcart(tempro);
+                localStorage.setItem("cart", JSON.stringify(basket));
+                alert("Add to cart successfully");
+                console.log(basket);
+            });
 
         </script>
 
