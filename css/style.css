@@ -713,7 +713,7 @@ footer .copyright {
 }
 
 #cart table thead {
-   border: 1px solid #e2e9e1;
+   border: 1px solid #0f160e;
    border-left: none;
    border-right: none;
 }
@@ -733,7 +733,7 @@ footer .copyright {
    font-size: 13px;
 }
 
-#add-cart #subtotal table{
+#add-cart ,#subtotal table{
    width: 100%;
    border-collapse: collapse;
    table-layout: fixed;
@@ -775,19 +775,11 @@ footer .copyright {
    margin-top: 100px;
    
 }
-
-#subtotal table {
-   border-collapse: collapse;
+#subtotal table td{
    width: 100%;
-   margin-bottom: 20px;
-   
+   padding: 10px;
 }
 
-#subtotal table td {
-   width: 50%;
-   border: 1px solid #0d1a0c;
-   padding: 10px;
-   font-size: 13px;
-}
+
 
 
