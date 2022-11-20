@@ -49,11 +49,11 @@
 
             <h4 id="price"></h4>
             <select id="size">
-                <option>Select Size</option>
-                <option>XL</option>
-                <option>XXL</option>
-                <option>Small</option>
-                <option>Large</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="Large">Large</option>
+                <option value="xl">XL</option>
+                <option value="xxl">XXL</option>
             </select>
 
             <input type="number" value="1" id="qty">
@@ -197,6 +197,12 @@
             let product = null;
 
             window.onload = function () {
+                product = localStorage.getItem("Product");
+                if (product) {
+                    product = JSON.parse(product);
+                    LoadProduct();
+                }
+
                 getUsername();
                 switch(currentuser.role){
                     case "admin":
@@ -224,11 +230,6 @@
                         break;
                 }
 
-                product = localStorage.getItem("Product");
-                if (product) {
-                    product = JSON.parse(product);
-                    LoadProduct();
-                }
             }
 
 
@@ -280,6 +281,8 @@
                 console.log(basket);
             });
 
+            
+
         </script>
 
 
@@ -299,7 +302,7 @@
 
             function Signout() {
                 sessionStorage.removeItem("user");
-                window.location = "/index.html";
+                window.location = "../index.html";
             }
 
         </script>
