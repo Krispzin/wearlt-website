@@ -124,16 +124,30 @@
         
         window.onload = function(){
             getUsername();
-            if(currentuser != null){
-                signuplink.innerText = currentuser.name;
-                signuplink.href = "#";
+            switch(currentuser.role){
+                case "admin":
+                    signuplink.innerText = "Go To Admin Panel";
+                    signuplink.href = "admin.html";
 
-                loginlink.innerText = "Sign Out";
-            }
+                    loginlink.innerText = "Sign Out";
+                    loginlink.href = "#";
+                    loginlink.onclick = Signout;
+                    break;
+                case "user":
+                    signuplink.innerText = currentuser.name;
+                    signuplink.href = "#";
 
-            else {
-                signuplink.innerText = "Sign Up";
-                loginlink.innerText = "Login";
+                    loginlink.innerText = "Sign Out";
+                    loginlink.href = "#";
+                    loginlink.onclick = Signout;
+                    break;
+                default:
+                    signuplink.innerText = "Sign Up";
+                    signuplink.href = "signup.html";
+
+                    loginlink.innerText = "Login";
+                    loginlink.href = "login.html";
+                    break;
             }
         }
 
