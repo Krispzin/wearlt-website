@@ -426,7 +426,6 @@
         const signuplink = document.getElementById("signuplink");
         const loginlink = document.getElementById("loginlink");
         var currentuser = null;
-        // var currentrole = null;
 
 //-------------------------------ฟังก์ชั่น-------------------------------//
 
@@ -439,59 +438,36 @@
             window.location = "index.html";
         }
 
-        // wtfff วะ ทำไงดี
-        // function getRole(){
-        //     const dbref = ref(realdb);
-        //     get(child(dbref, "UserLists/" + role.value)).then((snapshot) => {
-                
-        //     });
-        // }
-
 //--------------------------------เมื่อโหลด--------------------------------//
 
         window.onload = function(){
             getUsername();
-            if(currentuser != null){
-                signuplink.innerText = currentuser.name;
-                signuplink.href = "#";
+            switch(currentuser.role){
+                case "admin":
+                    signuplink.innerText = "Go To Admin Panel";
+                    signuplink.href = "admin.html";
 
-                loginlink.innerText = "Sign Out";
-            }
+                    loginlink.innerText = "Sign Out";
+                    loginlink.href = "#";
+                    loginlink.onclick = Signout;
+                    break;
+                case "user":
+                    signuplink.innerText = currentuser.name;
+                    signuplink.href = "#";
 
-            else {
-                signuplink.innerText = "Sign Up";
-                loginlink.innerText = "Login";
-            }
-            getRole();
-            if(currentrole == "admin"){
-                signuplink.innerText = "LMAO";
-                signuplink.href = "admin.html";
+                    loginlink.innerText = "Sign Out";
+                    loginlink.href = "#";
+                    loginlink.onclick = Signout;
+                    break;
+                default:
+                    signuplink.innerText = "Sign Up";
+                    signuplink.href = "signup.html";
+
+                    loginlink.innerText = "Login";
+                    loginlink.href = "login.html";
+                    break;
             }
         }
-
-// --------------------------- admin -------------------------------------//
-
-
-// มั่ว
-        // window.onload = admin(){
-        //     getRole();
-        //     if(currentrole == "admin"){
-        //         signuplink.innerText = "Admin";
-        //         signuplink.href = "admin.html";
-        //     }
-        // }
-
-
-        // function admin(){
-        //     getRole();
-        //     if(currentrole == "admin"){
-        //         signuplink.innerText = "Admin";
-        //         signuplink.href = "admin.html";
-        //     }
-        // }
-
-
-
 
 //--------------------------------IMPORT + CONFIGURATION-------------------------------//
 

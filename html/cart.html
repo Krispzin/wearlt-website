@@ -132,6 +132,23 @@
     <script src="/css/style.css"></script>
     <script type="module">
 
+//--------------------------------ตัวแปล--------------------------------//
+
+        const signuplink = document.getElementById("signuplink");
+        const loginlink = document.getElementById("loginlink");
+        var currentuser = null;
+
+//-------------------------------ฟังก์ชั่น-------------------------------//
+
+        function getUsername(){
+            currentuser = JSON.parse(sessionStorage.getItem("user"));
+        }
+
+        function Signout(){
+            sessionStorage.removeItem("user");
+            window.location = "index.html";
+        }
+
 //--------------------------------IMPORT + CONFIGURATION-------------------------------//
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
@@ -163,6 +180,32 @@
         var OuterTable = document.getElementById("tbody");
         
         window.onload = function() {
+            getUsername();
+            switch(currentuser.role){
+                case "admin":
+                    signuplink.innerText = "Go To Admin Panel";
+                    signuplink.href = "admin.html";
+
+                    loginlink.innerText = "Sign Out";
+                    loginlink.href = "#";
+                    loginlink.onclick = Signout;
+                    break;
+                case "user":
+                    signuplink.innerText = currentuser.name;
+                    signuplink.href = "#";
+
+                    loginlink.innerText = "Sign Out";
+                    loginlink.href = "#";
+                    loginlink.onclick = Signout;
+                    break;
+                default:
+                    signuplink.innerText = "Sign Up";
+                    signuplink.href = "signup.html";
+
+                    loginlink.innerText = "Login";
+                    loginlink.href = "login.html";
+                    break;
+            }
             getcart = localStorage.getItem("cart");
             if (getcart) {
                 getcart = JSON.parse(getcart);
@@ -258,44 +301,6 @@
         const btncheckout = document.getElementById("checkoutbtn");
 
         btncheckout.addEventListener("click", DoCheckOut);
-
-
-    </script>
-    <script>
-
-//--------------------------------ตัวแปล--------------------------------//
-
-        const signuplink = document.getElementById("signuplink");
-        const loginlink = document.getElementById("loginlink");
-        var currentuser = null;
-
-//-------------------------------ฟังก์ชั่น-------------------------------//
-
-        function getUsername(){
-            currentuser = JSON.parse(sessionStorage.getItem("user"));
-        }
-
-        function Signout(){
-            sessionStorage.removeItem("user");
-            window.location = "index.html";
-        }
-
-//--------------------------------เมื่อโหลด--------------------------------//
-
-        window.onload = function(){
-            getUsername();
-            if(currentuser != null){
-                signuplink.innerText = currentuser.name;
-                signuplink.href = "#";
-
-                loginlink.innerText = "Sign Out";
-            }
-
-            else {
-                signuplink.innerText = "Sign Up";
-                loginlink.innerText = "Login";
-            }
-        }
 
 
     </script>
