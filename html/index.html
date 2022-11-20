@@ -427,6 +427,7 @@
         const signuplink = document.getElementById("signuplink");
         const loginlink = document.getElementById("loginlink");
         var currentuser = null;
+        // var currentrole = null;
 
 //-------------------------------ฟังก์ชั่น-------------------------------//
 
@@ -438,6 +439,14 @@
             sessionStorage.removeItem("user");
             window.location = "index.html";
         }
+
+        // wtfff วะ ทำไงดี
+        // function getRole(){
+        //     const dbref = ref(realdb);
+        //     get(child(dbref, "UserLists/" + role.value)).then((snapshot) => {
+                
+        //     });
+        // }
 
 //--------------------------------เมื่อโหลด--------------------------------//
 
@@ -454,7 +463,36 @@
                 signuplink.innerText = "Sign Up";
                 loginlink.innerText = "Login";
             }
+            getRole();
+            if(currentrole == "admin"){
+                signuplink.innerText = "LMAO";
+                signuplink.href = "admin.html";
+            }
         }
+
+// --------------------------- admin -------------------------------------//
+
+
+// มั่ว
+        // window.onload = admin(){
+        //     getRole();
+        //     if(currentrole == "admin"){
+        //         signuplink.innerText = "Admin";
+        //         signuplink.href = "admin.html";
+        //     }
+        // }
+
+
+        // function admin(){
+        //     getRole();
+        //     if(currentrole == "admin"){
+        //         signuplink.innerText = "Admin";
+        //         signuplink.href = "admin.html";
+        //     }
+        // }
+
+
+
 
 //--------------------------------IMPORT + CONFIGURATION-------------------------------//
 

@@ -1,99 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
     <style>
-        body{
+        body {
             font-family: Arial, Helvetica, sans-serif
         }
 
-        .imagesDivStyle{
+        .imagesDivStyle {
             width: 600px;
             border: 1px gray solid;
             padding: 5px;
         }
 
-        .imgs{
+        .imgs {
             height: 80px;
             width: 100px;
             border: 1px black dashed;
             margin: 5px;
         }
-        
-        label{
+
+        label {
             display: inline-block;
             width: 120px;
         }
 
-        input, textarea{
+        input,
+        textarea {
             width: 600px;
             border: gray 1px soild;
             resize: none;
             padding: 8px;
         }
-        
-        textarea{
+
+        textarea {
             height: 100px;
         }
 
-        .pointers{
-            border:1px darkslateblue dashed;
+        .pointers {
+            border: 1px darkslateblue dashed;
         }
-        
-        #pdlab{
+
+        #pdlab {
             height: 100px;
             vertical-align: top;
         }
-        
-        #addprodbtn, #selimgsbtn{
+
+        #addprodbtn,
+        #selimgsbtn {
             float: right;
         }
 
-        #controldiv{
-            width:740px;
+        #controldiv {
+            width: 740px;
         }
 
-        #loadlab{
+        #loadlab {
             width: 200px;
         }
-
-
     </style>
 </head>
 
 <body>
     <!-- admin panel -->
-    <label> Product Name </label> <input type="text" id="nameinp"> <br><br>
-    <label> Product Price</label> <input type="number" id="priceinp"><br><br>
-    <label> Category</label>
-    <select id="catinp">
-        <option value="shirt">shirt</option>
-        <option value="t-shirt">t-shirt</option>
-        <option value="hoodie">hoodie</option>
-    </select><br><br>
+    <div class="container m-3">
+        <label> Product Name </label> <input type="text" id="nameinp"> <br><br>
+        <label> Product Price</label> <input type="number" id="priceinp"><br><br>
+        <label> Category</label>
+        <select id="catinp">
+            <option value="shirt">shirt</option>
+            <option value="t-shirt">t-shirt</option>
+            <option value="hoodie">hoodie</option>
+        </select>
+    
+    <br><br>
+    <label id="pdlab">Product Description</label> <textarea id="desarea"></textarea><br><br>
+    <div id="imagesDiv"></div>
+    </div>
+    
     <!-- <label>Points #1</label> <input type="text" id="p1inp" class="pointers"><br><br>
     <label>Points #2</label> <input type="text" id="p2inp" class="pointers"><br><br>
     <label>Points #3</label> <input type="text" id="p3inp" class="pointers"><br><br>
     <label>Points #4</label> <input type="text" id="p4inp" class="pointers"><br><br> -->
-    
 
-    <label id="pdlab">Product Description</label> <textarea id="desarea"></textarea><br><br>
 
-    <div id="imagesDiv"></div>
+
 
     <div id="controldiv">
         <label></label><label id='loadlab'>uploading 1 of 3</label>
-        <button id="addprodbtn">Add Products</button>
-        <button id="selimgsbtn">Select Images</button>
-        <button id="removebtn">Remove Images</button>
+        <div class="container mt-2">
+            <button id="addprodbtn" class="btn btn-primary me-3">Add Products</button>
+            <button id="selimgsbtn" class="btn btn-primary me-3">Select Images</button>
+            <button id="removebtn" class="btn btn-danger">Remove Images</button>
+        </div>
     </div>
 
+    <button onclick="location.href='/html/index.html'" class="btn btn-primary m-3 position-absolute top-0 end-0">Go to
+        Home</button>
+
+
+    <br><br>
+
+    <div class="container mt-3 table-responsive-sm">
+        <div class="ms-3 mt-2 top-0 end-20">
+            <label class="container">Enter Product name without spacing,capital,and,number to delete </label>
+            <input id="prd_name" type="text" class="form-control-sm w-3" placeholder="product name">
+            <button id="delBtn" class="btn btn-sm btn-danger ">Delete</button>
+        </div>
+        <table class="table table-secondary mt-4">
+            <thead>
+                <th>No.</th>
+                <th>name</th>
+                <th>price</th>
+                <th>product id</th>
+                <th>category</th>
+            </thead>
+            <tbody id="tbody1"></tbody>
+        </table>
+    </div>
+
+
+
+    <!-------------------------- Script ----------------------------->
+
     <script type="module">
-        
+
         var Files = [];
         var FileReaders = [];
         var ImageLinksArray = [];
@@ -115,11 +153,11 @@
         // const p3 = document.getElementById('p3inp');
         // const p4 = document.getElementById('p4inp');
 
-        function OpenFileDialog(){
+        function OpenFileDialog() {
             let inp = document.createElement('input');
             inp.type = 'file';
             inp.multiple = 'multiple';
-            
+
             inp.onchange = (e) => {
                 AssignImgsToFilesArray(e.target.files);
                 CreateImgTags();
@@ -128,27 +166,27 @@
             inp.click();
         }
 
-        function AssignImgsToFilesArray(thefiles){
+        function AssignImgsToFilesArray(thefiles) {
             let num = Files.length + thefiles.length;
-            let looplim = (num <= 3) ? thefiles.length : (3-Files.length);
+            let looplim = (num <= 3) ? thefiles.length : (3 - Files.length);
 
             for (let i = 0; i < looplim; i++) {
                 Files.push(thefiles[i]);
             }
 
-            if(num>3){
+            if (num > 3) {
                 alert('You can only select 3 images');
             }
         }
-        
-        function CreateImgTags(){
-            imgdiv.innerHTML='';
+
+        function CreateImgTags() {
+            imgdiv.innerHTML = '';
             imgdiv.classList.add('imagesDivStyle');
 
             for (let i = 0; i < Files.length; i++) {
                 FileReaders[i] = new FileReader();
 
-                FileReaders[i].onload = function(){
+                FileReaders[i].onload = function () {
                     var img = document.createElement('img');
                     img.id = 'imgNo' + i;
                     img.classList.add('imgs');
@@ -158,40 +196,41 @@
                 FileReaders[i].readAsDataURL(Files[i]);
             }
             let lab = document.getElementById('label');
-            lab.innerHTML ='clear images';
+            lab.innerHTML = 'clear images';
             lab.style = 'cursor:pointer; display:block ;color:navy ; font-size:12px';
             lab.addEventListener('click', ClearImages);
             imgdiv.append(lab);
         }
-        
 
-        function ClearImages(){
+
+        function ClearImages() {
             Files = [];
             ImageLinksArray = [];
             imgdiv.innerHTML = '';
             imgdiv.classList.remove('imagesDivStyle');
         }
 
-        function getShortTitle(){
+        function getShortTitle() {
             let namey = name.value.substring(0, 50);
-            return namey.replace(/[^a-zA-Z0-9]/g,"");
+            return namey.replace(/[^a-zA-Z0-9]/g, "");
         }
 
+
         function makeid(length) {
-            var result           = '';
-            var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             var charactersLength = characters.length;
-            for ( var i = 0; i < length; i++ ) {
+            for (var i = 0; i < length; i++) {
                 result += characters.charAt(Math.floor(Math.random() * charactersLength));
             }
             return result;
         }
 
-        function GetImgUploadProgress(){
+        function GetImgUploadProgress() {
             return 'Images Uploaded ' + ImageLinksArray.length + ' of ' + Files.length;
         }
 
-        function IsAllImagesUploaded(){
+        function IsAllImagesUploaded() {
             return ImageLinksArray.length == Files.length;
         }
 
@@ -204,39 +243,39 @@
         //     return points;
         // }
 
-        function RestoreBack(){
-            selBtn.disabled =false;
-            addBtn.disabled =false;
+        function RestoreBack() {
+            selBtn.disabled = false;
+            addBtn.disabled = false;
         }
-        
-//---------------------------------EVENT---------------------------------//
+
+        //---------------------------------EVENT---------------------------------//
 
         selBtn.addEventListener('click', OpenFileDialog);
         addBtn.addEventListener('click', UploadAllImages);
         remBtn.addEventListener('click', ClearImages);
 
-        
-//---------------------------UPLOAD IMAGE TO FIREBASE-------------------------------//
-        function UploadAllImages(){
-            selBtn.disabled =true;
-            addBtn.disabled =true;
+
+        //---------------------------UPLOAD IMAGE TO FIREBASE-------------------------------//
+        function UploadAllImages() {
+            selBtn.disabled = true;
+            addBtn.disabled = true;
 
             ImageLinksArray = [];
 
-            for (let i = 0; i < Files.length; i++){
-                UploadAnImage(Files[i],i);
+            for (let i = 0; i < Files.length; i++) {
+                UploadAnImage(Files[i], i);
             }
         }
 
 
-        function UploadAnImage(imgToUpload, imgNo){
+        function UploadAnImage(imgToUpload, imgNo) {
             const metadata = {
                 contentType: imgToUpload.type
             };
 
             const storage = getStorage();
 
-            const ImageAddress = 'images/' + getShortTitle() + "/img#" + (imgNo+1);
+            const ImageAddress = 'images/' + getShortTitle() + "/img#" + (imgNo + 1);
 
             const storageRef = sRef(storage, ImageAddress);
 
@@ -246,27 +285,27 @@
                 proglab.innerHTML = GetImgUploadProgress();
             },
 
-            (error) => {
-                alert("error uploading image");
-            },
+                (error) => {
+                    alert("error uploading image");
+                },
 
-            ()=>{
-                getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
-                    ImageLinksArray.push(downloadURL);
-                    if(IsAllImagesUploaded()){
-                        proglab.innerHTML = "all images uploaded";
-                        UploadAProduct();
-                    }
-                });
-            }
+                () => {
+                    getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+                        ImageLinksArray.push(downloadURL);
+                        if (IsAllImagesUploaded()) {
+                            proglab.innerHTML = "all images uploaded";
+                            UploadAProduct();
+                        }
+                    });
+                }
             );
         }
 
-//-----------------------------FIREBASE-------------------------//
+        //-----------------------------FIREBASE-------------------------//
 
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
-        
+
 
         const firebaseConfig = {
             apiKey: "AIzaSyBChr-7kEA30C5KceoYF0bA2LMCoHzWXzE",
@@ -286,14 +325,14 @@
         // --------------------import database functions---------------------//
 
 
-        import { getDatabase, ref, set, child, get } 
+        import { getDatabase, ref, set, child, get, onValue, remove }
             from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
         const realdb = getDatabase();
 
         // ---------------------upload a product------------------------//
-        
-        function UploadAProduct(){
-            set(ref(realdb,"theProductRealdb/"+ getShortTitle()),{
+
+        function UploadAProduct() {
+            set(ref(realdb, "theProductRealdb/" + getShortTitle()), {
                 id: makeid(8),
                 ProductTitle: name.value,
                 Category: category.value,
@@ -306,10 +345,95 @@
             alert("product uploaded");
             RestoreBack();
         }
-        
+
+        // --------------------fill the table -------------------------------//
+        var product_no = 0;
+        var tbody = document.getElementById('tbody1');
+
+
+        function AddItemToTable(name, price, img, category) {
+            let trow = document.createElement("tr");
+            let td1 = document.createElement('td');
+            let td2 = document.createElement('td');
+            let td3 = document.createElement('td');
+            let td4 = document.createElement('td');
+            let td5 = document.createElement('td');
+
+            td1.innerHTML = ++product_no;
+            td2.innerHTML = name;
+            td3.innerHTML = price;
+            td4.innerHTML = img;
+            td5.innerHTML = category;
+
+            trow.appendChild(td1);
+            trow.appendChild(td2);
+            trow.appendChild(td3);
+            trow.appendChild(td4);
+            trow.appendChild(td5);
+
+            tbody.appendChild(trow);
+        }
+
+        function AddAllItemToTable(TheProduct) {
+            product_no = 0;
+            tbody.innerHTML = "";
+            TheProduct.forEach(element => {
+                AddItemToTable(element.ProductTitle, element.Price, element.id, element.Category);
+            });
+        }
+
+        //----------------------------Get data-----------------------------//
+
+        function GetAllDataRealTime() {
+            const dbRef = ref(realdb, "theProductRealdb");
+
+            onValue(dbRef, (snapshot) => {
+                var product_list = [];
+
+                snapshot.forEach(childSnapshot => {
+                    product_list.push(childSnapshot.val());
+                });
+
+                AddAllItemToTable(product_list)
+            })
+        }
+
+
+        window.onload = GetAllDataRealTime;
+
+        // ---------------------delete data-------------------------------//
+
+        var prd_name = document.getElementById("prd_name")
+        var delBtn = document.getElementById("delBtn");
+        var shortenTitle = getShortTitle(prd_name.value);
+
+        function DeleteData() {
+
+            // DeleteImg();
+
+            remove(ref(realdb, "theProductRealdb/" + prd_name))
+                .then(() => {
+                    alert("data removed successfully");
+                })
+                .catch((error) => {
+                    alert("unsucessful,error" + error);
+                })
+        }
+
+        // กูทำลบรูปไม่เป็น
+        // function DeleteImg(img,index) {
+
+        //     let image = 
+        // }
+
+        delBtn.addEventListener("click", DeleteData);
+
+
+
+
+
     </script>
-<br><br>
-<a class = "active" href="/html/index.html">Home</a>
+
 </body>
 
 
