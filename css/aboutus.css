@@ -1,0 +1,19 @@
+.ecommerce-hero-slider-small .orbit-previous,
+.ecommerce-hero-slider-small .orbit-next {
+    color: #cacaca;
+}
+
+.ecommerce-hero-slider-small .orbit-bullets button {
+    height: 0.65rem;
+    width: 0.65rem;
+}
+
+.ecommerce-hero-slider-small .hero-slider-slide {
+    background-color: #fefefe;
+    padding: 1.5rem;
+}
+
+.ecommerce-hero-slider-small .hero-slider-slide-content p {
+    font-size: 0.9rem;
+    color: #8a8a8a;
+}

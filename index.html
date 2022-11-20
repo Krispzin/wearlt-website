@@ -196,27 +196,6 @@
             }
         }
 
-// --------------------------- admin -------------------------------------//
-
-
-// มั่ว
-        // window.onload = admin(){
-        //     getRole();
-        //     if(currentrole == "admin"){
-        //         signuplink.innerText = "Admin";
-        //         signuplink.href = "admin.html";
-        //     }
-        // }
-
-
-        // function admin(){
-        //     getRole();
-        //     if(currentrole == "admin"){
-        //         signuplink.innerText = "Admin";
-        //         signuplink.href = "admin.html";
-        //     }
-        // }
-
 
 
 
@@ -304,8 +283,8 @@ const app = initializeApp(firebaseConfig);
         function GotoProductDetails(event) {
             var inx = GetProductIndex(event.target.id);
             localStorage.setItem('Product', JSON.stringify(ArrayOfProducts[inx]));
-            // console.log(localStorage.getItem('Product'));
-            window.location = 'sproduct.html';
+            console.log(localStorage.getItem('Product'));
+            window.location = '/html/sproduct.html';
         }
 
         function AssignAllEvent() {

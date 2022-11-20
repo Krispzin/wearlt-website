@@ -7,7 +7,8 @@
     <title>Cart</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
     <link rel="stylesheet" href="/css/style.css">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     
     
     
@@ -43,9 +44,9 @@
             <!-- table head -->
             <thead>
                 <tr>
-                    <td>Remove</td>
                     <td>Image</td>
                     <td>Product</td>
+                    <td>size</td>
                     <td>Price</td>
                     <td>Quantity</td>
                     
@@ -59,7 +60,7 @@
 
     <section id="add-cart">
         <div id="subtotal">
-            <table>
+            <table class="container mt-5">
                 <tr>
                     <td>Shipping</td>
                     <td>Free</td>
@@ -70,8 +71,10 @@
                 </tr>
                 
             </table>
+            <div class="container">
             <button class="normal" id="checkoutbtn">Proceed to Checkout</button>
             <button class="normal" id="removeall">Remove All Item(s)</button>
+            </div>
         </div>
     </section>
 
@@ -98,9 +101,6 @@
         <div class="col">
             <h4>About</h4>
             <a href="/html/aboutus.html">About Us</a>
-            <!-- <a href="#">Delivery Information</a> -->
-            <!-- <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a> -->
             <a href="/html/contactus.html">Contact Us</a>
         </div>
         <div class="col">
@@ -212,9 +212,10 @@
                 html += 
                 `
                 <tr>
-                    <td class="canceltr" id="remtr-`+ inx +`"></td>
+
                     <td><img src="`+ getcart[i].Imglink +`" alt="" ></td>
                     <td>`+ getcart[i].Product +`</td>
+                    <td>`+ getcart[i].Size+`</td>
                     <td>`+ getcart[i].Price +` Baht</td>
                     <td>`+ getcart[i].item +`</td>
                 </tr>

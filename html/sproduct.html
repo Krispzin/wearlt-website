@@ -21,7 +21,6 @@
                 <li><a href="/html/signup.html" id="signuplink">Sign Up</a></li>
                 <li><a href="/html/login.html" id="loginlink">Login</a></li>
                 <li><a href="/html/cart.html"><img id="bar" src="/img/shopping-cart.png" width="20"></a></li>
-                <!--cart ยังทำไม่ได้ไม่รู้เป็นไรเดี่ยวมาทำ-->
                 <img id="close" href="#" src="/img/close.png" width="10">
             </ul>
         </div>
@@ -267,6 +266,7 @@
                         Product: tempro.ProductTitle,
                         Imglink: tempro.LinksOfImages[0],
                         Price: tempro.Price,
+                        Size: sizeinp.value,
                     });
                 } else {
                     search.item += Number(qtyinp.value);
