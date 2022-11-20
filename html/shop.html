@@ -201,15 +201,6 @@
 
         function AddAProduct(product, index) {
             let html =
-            // `
-            // <img src="`+ product.LinksOfImages[0] + `" class="thumb mt-2" id="thumb-` + index + `">
-            // <p class="title" id="title-`+ index + `">` + getShortTitle(product.ProductTitle) + `</p>
-            // <h5 class="price">`+ product.Price + ` Thai baht</h5>
-            // <button class="detbtns btn" id="detbtn-`+ index + `">View Details</button>
-            // `
-
-            
-            // <div class="pro" id="pro-`+index+`">
             `
                 <img class="image" id="image-`+ index +`" src="`+ product.LinksOfImages[0]+ `" alt="" width="">
                 <div class="des" id="des-`+ index +`">
@@ -219,7 +210,6 @@
                 </div>
                 <img src="/img/shopping-cart.png" class="cart" id="cart-`+ index +`" width="1">
             `
-            // </div>
             
 
             let newProd = document.createElement('div');
@@ -229,38 +219,11 @@
             OuterDiv.append(newProd);
         }
 
-        // function GetUl(array){
-        //     let ul = document.createElement('ul');
-        //     ul.classList.add('points');
-
-        //     array.forEach(element => {
-        //         let li = document.createElement('li');
-        //         li.innerText=element;
-        //         ul.append(li);
-        //     });
-        //     return ul.outerHTML;
-        // }
-
         function getShortTitle(title) {
             if (title.length > 49) title = title.substring(0, 47);
             else return title;
             return title + "...";
         }
-
-        // function GenerateStockLabel(stock){
-        //     let stocklabel = document.createElement('h5');
-        //     stocklabel.classList.add('stock');
-
-        //     if(stock > 0){
-        //         stocklabel.innerHTML = 'In Stock';
-        //         stocklabel.classList.add('text-success');
-        //     }
-        //     else{
-        //         stocklabel.innerHTML = 'Out of Stock';
-        //         stocklabel.classList.add('text-warning');
-        //     }
-        //     return stocklabel.outerHTML;
-        // }
 
         function GetProductIndex(id) {
             var indstart = id.indexOf('-') + 1;

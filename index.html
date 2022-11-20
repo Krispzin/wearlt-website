@@ -166,36 +166,34 @@
             window.location = "index.html";
         }
 
-        // wtfff วะ ทำไงดี
-        // function getRole(){
-        //     const dbref = ref(realdb);
-        //     get(child(dbref, "UserLists/" + role.value)).then((snapshot) => {
-                
-        //     });
-        // }
-
 //--------------------------------เมื่อโหลด--------------------------------//
 
         window.onload = function(){
             getUsername();
             switch(currentuser.role){
-                case "admin" :
-                    signuplink.innerText = "Go to Admin Panel";
+                case "admin":
+                    signuplink.innerText = "Go To Admin Panel";
                     signuplink.href = "admin.html";
 
                     loginlink.innerText = "Sign Out";
                     loginlink.href = "#";
-                    loginlink.onclick = Signout();
-                case "user" :
+                    loginlink.onclick = Signout;
+                    break;
+                case "user":
                     signuplink.innerText = currentuser.name;
                     signuplink.href = "#";
 
                     loginlink.innerText = "Sign Out";
                     loginlink.href = "#";
-                    loginlink.onclick = Signout();
-                default :
+                    loginlink.onclick = Signout;
+                    break;
+                default:
                     signuplink.innerText = "Sign Up";
+                    signuplink.href = "signup.html";
+
                     loginlink.innerText = "Login";
+                    loginlink.href = "login.html";
+                    break;
             }
         }
 
