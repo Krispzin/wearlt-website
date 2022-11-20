@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-sacle=1.0">
     <title id="titletop">WearIt</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
-    <link rel="stylesheet" href="/css/style.css"> 
+    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
 <body>
     <section id="header">
-        <a href="#"><img src="/img/draft1.png" width="40" class="logo" alt=""></a><!--Logo website ปล่อยไปก่อน-->
+        <a href="/index.html"><img src="/img/draft1.png" width="40" class="logo" alt=""></a>
         <div>
             <ul id="navbar">
-                <li><a href="/html/index.html">Home</a></li>
+                <li><a href="/index.html">Home</a></li>
                 <li><a class="active" href="/html/shop.html">Shop</a></li>
                 <li><a href="/html/signup.html" id="signuplink">Sign Up</a></li>
                 <li><a href="/html/login.html" id="loginlink">Login</a></li>
@@ -31,7 +31,7 @@
 
         </div>
     </section>
-        <!---------------------------------Main Page--------------------------------->
+    <!---------------------------------Main Page--------------------------------->
 
 
     <section id="prodetails" class="section-p1">
@@ -40,7 +40,7 @@
         </div>
 
         <div class="single-pro-details">
-            <a href="/html/index.html"> Home</a>
+            <a href="/index.html"> Home</a>
             <b> /</b>
             <a href="/html/shop.html"> Shop</a>
             <b> /</b>
@@ -148,10 +148,10 @@
 
         <footer class="section-p1">
             <div class="col">
-                <!-- <img class="logo" src="img/" alt=""> -->
+                <img class="logo" src="img/" alt="">
                 <h4>Contact</h4>
                 <p><strong>Address: </strong>Bangkok Thailand</p>
-                <p><strong>Phone: </strong>021111111 / 0311112222</p>
+                <p><strong>Phone: </strong>089 133 7420</p>
                 <p><strong>Hours: </strong>10:00 - 18:00,Mon - Sat</p>
                 <div class="follow">
                     <h4>Follow us</h4>
@@ -161,39 +161,38 @@
                         <i class="fab fa-twitter"></i>
                         <i class="fab fa-instagram"></i>
                         <i class="fab fa-pinterest-p"></i>
+
+
                     </div>
 
                 </div>
             </div>
             <div class="col">
                 <h4>About</h4>
-                <a href="#">About Us</a>
-                <a href="#">Delivery Information</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms & Conditions</a>
-                <a href="#">Contact Us</a>
+                <a href="/html/aboutus.html">About Us</a>
+                <!-- <a href="#">Delivery Information</a> -->
+                <!-- <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a> -->
+                <a href="/html/contactus.html">Contact Us</a>
 
             </div>
             <div class="col">
-                <h4>My Accout</h4>
-                <a href="#">Sing In</a>
-                <a href="#">View Cart</a>
-                <a href="#">My Wishlist</a>
-                <a href="#">Track My Order</a>
-                <a href="#">Help</a>
+                <h4>My Account</h4>
+                <a href="/html/signup.html">Sign Up</a>
+
+                <a href="/html/login.html" id="loginlink">Login</a>
 
             </div>
             <div class="col install">
-                <h4>Install App</h4>
-                <p>Form App Store or Google Play</p>
+                <h4>Cart</h4>
+                <a href="/html/cart.html">View Cart</a>
             </div>
             <div class="copyright">
-                <p>2021, Tech2 etc - HTML CSS Ecommerce Template</p>
-
+                <p>2022, WebCreatorBro</p>
             </div>
         </footer>
 
-        
+
         <script type="module">
 
             let product = null;
@@ -216,13 +215,13 @@
                 document.getElementById("price").innerHTML = product.Price + " Thai baht";
             }
 
-//---------------------------------ตัวแปล สำหรับเก็บข้อมูลที่เราจะส่งไปยังหน้าตะกร้าสินค้า---------------------------------//
+            //---------------------------------ตัวแปล สำหรับเก็บข้อมูลที่เราจะส่งไปยังหน้าตะกร้าสินค้า---------------------------------//
 
             const addbtn = document.getElementById("AddCartbtn");
             let qtyinp = document.getElementById("qty");
             const sizeinp = document.getElementById("size");
 
-            let basket = JSON.parse(localStorage.getItem("cart")) || [];            
+            let basket = JSON.parse(localStorage.getItem("cart")) || [];
 
             let tempro = localStorage.getItem("Product");
             if (tempro) {
@@ -231,17 +230,17 @@
 
 
 
-            function addcart(tempro){
+            function addcart(tempro) {
                 let search = basket.find((item) => item.id === tempro.id);
 
-                if(search === undefined){
+                if (search === undefined) {
                     basket.push({
-                    id: tempro.id,
-                    item: Number(qtyinp.value),
-                    Product: tempro.ProductTitle,
-                    Imglink: tempro.LinksOfImages[0],
-                    Price: tempro.Price,
-                });
+                        id: tempro.id,
+                        item: Number(qtyinp.value),
+                        Product: tempro.ProductTitle,
+                        Imglink: tempro.LinksOfImages[0],
+                        Price: tempro.Price,
+                    });
                 } else {
                     search.item += Number(qtyinp.value);
                 }
@@ -273,7 +272,7 @@
 
             function Signout() {
                 sessionStorage.removeItem("user");
-                window.location = "index.html";
+                window.location = "/index.html";
             }
 
             //--------------------------------เมื่อโหลด--------------------------------//

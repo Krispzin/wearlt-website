@@ -11,51 +11,92 @@
 </head>
 
 <body>
+    <script src="/css/style.css"></script>
     <section id = "header">
         <a href="/index.html"><img src="/img/draft1.png" width="40" class="logo" alt=""></a>
         <div>
             <ul id="navbar">
-                <li><a href="/index.html">Home</a></li>
-                <li><a class="active" href="/html/shop.html">Shop</a></li>
+                <li><a class = "active" href="/index.html">Home</a></li>
+                <li><a href="/html/shop.html">Shop</a></li>
                 <li><a href="/html/signup.html" id="signuplink">Sign Up</a></li>
                 <li><a href="/html/login.html" id="loginlink">Login</a></li>
-                
-                <li><a href="cart.html"><img id="bar" src="/img/shopping-cart.png"  width="20"></a></li>
+                <li><a href="/html/cart.html"><img id="cartbar" src="/img/shopping-cart.png" width="20"></a></li>
                 <img id="close" href="#" src="/img/close.png"  width="10">
             </ul>
         </div>
         <div id="mobile">
-            
             <img id="bar" src="/img/outdent.png"  width="20">
 
         </div>
         
     </section>
-    <section id ="page-header">
-        
-        <h2>Stay Home</h2>
+    <section id ="hero">
+        <h4>Tread-in-offer</h4>
+        <h2>Super value deals</h2>
+        <h1>On all product</h1>
         <p>Save more with coupons & up to 70% off!</p>
-
+        <button onclick="window.location.href='/html/shop.html';">Click now</button>
     </section>
+
     <section id = "product1" class="section-p1">
         <h2>Featured Projects</h2>
         <p>Summer Collection New Morden Design</p>
-
-
         <div class="pro-container" id="productsDiv">
-            
-        </div>
 
-    
+
+        </div>
+    </div>
     </section>
 
-    <!-- <section id="paginaction" class="section-p1"> 
-        <a href ="shop.html">1</a>
-        <a href ="shop2.html">2</a>
-    </section> -->
+    <section id="banner" class="section-m1">
+        <h4>Repair Services</h4>
+        <h2>Up to <span>70% Off</span> - All t-shirts</h2>
+        <button class="normal" onclick="window.location.href='/html/shop.html';">Explore More </button>
 
+    </section>
+    <section id = "product1" class="section-p1">
+        
+        <div class="pro-container" id="productsDiv2">
 
-    <!----------------------- footer---------------------- -->
+        </div>
+    
+    </section>
+    <section id="sm-banner" class="section-p1">
+        <div class="banner-box">
+            <h4>Crazy deals</h4>
+            <h2>buy 1 get 1 free</h2>
+            <span>The best classic T-shirts is on sale</span>
+            <button class="white" onclick="window.location.href='/html/shop.html';">Learn More</button>
+
+        </div>
+        <div class="banner-box banner-box2 ">
+            <h4>Crazy deals</h4>
+            <h2>buy 1 get 1 free</h2>
+            <span>The best classic T-shirts is on sale</span>
+            <button class="white" onclick="window.location.href='/html/shop.html';">Collection</button>
+
+        </div>
+
+    </section>
+    <section id="banner3">
+        <div class="banner-box">
+            <h2>SEASON SALE</h2>
+            <h3>Winter Collection -50% OFF</h3>
+
+        </div>
+        <div class="banner-box banner-box2">
+            <h2>SEASON SALE</h2>
+            <h3>Winter Collection -50% OFF</h3>
+
+        </div>
+        <div class="banner-box banner-box3">
+            <h2>SEASON SALE</h2>
+            <h3>Winter Collection -50% OFF</h3>
+
+        </div>
+
+    </section>
+
     <footer class="section-p1">
         <div class="col">
             <img class="logo" src="img/" alt="">
@@ -71,7 +112,10 @@
                     <i class="fab fa-twitter"></i>
                     <i class="fab fa-instagram"></i>
                     <i class="fab fa-pinterest-p"></i>
+                    
+
                 </div>
+
             </div>
         </div>
         <div class="col">
@@ -81,6 +125,7 @@
             <!-- <a href="#">Privacy Policy</a>
             <a href="#">Terms & Conditions</a> -->
             <a href="/html/contactus.html">Contact Us</a>
+
         </div>
         <div class="col">
             <h4>My Account</h4>
@@ -97,31 +142,40 @@
             <p>2022, WebCreatorBro</p>
         </div>
     </footer>
-
     
     
     <script src="/css/style.css"></script>
+    <script src="/js/script1.js"></script>
     <script type="module">
 
 //--------------------------------ตัวแปล--------------------------------//
-        
+
         const signuplink = document.getElementById("signuplink");
         const loginlink = document.getElementById("loginlink");
         var currentuser = null;
-        
+        // var currentrole = null;
+
 //-------------------------------ฟังก์ชั่น-------------------------------//
-        
+
         function getUsername(){
             currentuser = JSON.parse(sessionStorage.getItem("user"));
         }
 
         function Signout(){
             sessionStorage.removeItem("user");
-            window.location = "/index.html";
+            window.location = "index.html";
         }
 
+        // wtfff วะ ทำไงดี
+        // function getRole(){
+        //     const dbref = ref(realdb);
+        //     get(child(dbref, "UserLists/" + role.value)).then((snapshot) => {
+                
+        //     });
+        // }
+
 //--------------------------------เมื่อโหลด--------------------------------//
-        
+
         window.onload = function(){
             getUsername();
             if(currentuser != null){
@@ -135,24 +189,53 @@
                 signuplink.innerText = "Sign Up";
                 loginlink.innerText = "Login";
             }
+            getRole();
+            if(currentrole == "admin"){
+                signuplink.innerText = "LMAO";
+                signuplink.href = "admin.html";
+            }
         }
+
+// --------------------------- admin -------------------------------------//
+
+
+// มั่ว
+        // window.onload = admin(){
+        //     getRole();
+        //     if(currentrole == "admin"){
+        //         signuplink.innerText = "Admin";
+        //         signuplink.href = "admin.html";
+        //     }
+        // }
+
+
+        // function admin(){
+        //     getRole();
+        //     if(currentrole == "admin"){
+        //         signuplink.innerText = "Admin";
+        //         signuplink.href = "admin.html";
+        //     }
+        // }
+
+
+
 
 //--------------------------------IMPORT + CONFIGURATION-------------------------------//
 
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
 
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBChr-7kEA30C5KceoYF0bA2LMCoHzWXzE",
-            authDomain: "wearit-f97b1.firebaseapp.com",
-            databaseURL: "https://wearit-f97b1-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "wearit-f97b1",
-            storageBucket: "wearit-f97b1.appspot.com",
-            messagingSenderId: "225288076004",
-            appId: "1:225288076004:web:755e446f713c543fd14af1"
-        };
+const firebaseConfig = {
+    apiKey: "AIzaSyBChr-7kEA30C5KceoYF0bA2LMCoHzWXzE",
+    authDomain: "wearit-f97b1.firebaseapp.com",
+    databaseURL: "https://wearit-f97b1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "wearit-f97b1",
+    storageBucket: "wearit-f97b1.appspot.com",
+    messagingSenderId: "225288076004",
+    appId: "1:225288076004:web:755e446f713c543fd14af1"
+};
 
-        const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
 // --------------------import database functions---------------------//
 
@@ -187,15 +270,6 @@
 
         function AddAProduct(product, index) {
             let html =
-            // `
-            // <img src="`+ product.LinksOfImages[0] + `" class="thumb mt-2" id="thumb-` + index + `">
-            // <p class="title" id="title-`+ index + `">` + getShortTitle(product.ProductTitle) + `</p>
-            // <h5 class="price">`+ product.Price + ` Thai baht</h5>
-            // <button class="detbtns btn" id="detbtn-`+ index + `">View Details</button>
-            // `
-
-            
-            // <div class="pro" id="pro-`+index+`">
             `
                 <img class="image" id="image-`+ index +`" src="`+ product.LinksOfImages[0]+ `" alt="" width="">
                 <div class="des" id="des-`+ index +`">
@@ -205,7 +279,6 @@
                 </div>
                 <img src="/img/shopping-cart.png" class="cart" id="cart-`+ index +`" width="1">
             `
-            // </div>
             
 
             let newProd = document.createElement('div');
@@ -215,38 +288,12 @@
             OuterDiv.append(newProd);
         }
 
-        // function GetUl(array){
-        //     let ul = document.createElement('ul');
-        //     ul.classList.add('points');
-
-        //     array.forEach(element => {
-        //         let li = document.createElement('li');
-        //         li.innerText=element;
-        //         ul.append(li);
-        //     });
-        //     return ul.outerHTML;
-        // }
 
         function getShortTitle(title) {
             if (title.length > 49) title = title.substring(0, 47);
             else return title;
             return title + "...";
         }
-
-        // function GenerateStockLabel(stock){
-        //     let stocklabel = document.createElement('h5');
-        //     stocklabel.classList.add('stock');
-
-        //     if(stock > 0){
-        //         stocklabel.innerHTML = 'In Stock';
-        //         stocklabel.classList.add('text-success');
-        //     }
-        //     else{
-        //         stocklabel.innerHTML = 'Out of Stock';
-        //         stocklabel.classList.add('text-warning');
-        //     }
-        //     return stocklabel.outerHTML;
-        // }
 
         function GetProductIndex(id) {
             var indstart = id.indexOf('-') + 1;
@@ -258,7 +305,7 @@
             var inx = GetProductIndex(event.target.id);
             localStorage.setItem('Product', JSON.stringify(ArrayOfProducts[inx]));
             // console.log(localStorage.getItem('Product'));
-            window.location = '/html/sproduct.html';
+            window.location = 'sproduct.html';
         }
 
         function AssignAllEvent() {
@@ -283,7 +330,7 @@
                 
             }
         }
-        
+
     </script>
 </body>
 
