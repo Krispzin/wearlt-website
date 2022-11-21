@@ -110,7 +110,7 @@
 
     <div class="container mt-3 table-responsive-sm">
         <div class="ms-3 mt-2 top-0 end-20">
-            <label class="container">Enter Product name without spacing,capital,and,number to delete </label>
+            <label class="container">Enter Product name without special symbol and number and spacing to delete </label>
             <input id="prd_name" type="text" class="form-control-sm w-3" placeholder="product name">
             <button id="delBtn" class="btn btn-sm btn-danger ">Delete</button>
         </div>
@@ -322,6 +322,8 @@
         import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL }
             from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
 
+        const storage = getStorage();
+
         // --------------------import database functions---------------------//
 
 
@@ -405,19 +407,16 @@
 
         var prd_name = document.getElementById("prd_name")
         var delBtn = document.getElementById("delBtn");
-        var shortenTitle = getShortTitle(prd_name.value);
+        const picRef = sRef(storage, "images/");
 
         function DeleteData() {
-
-            // DeleteImg();
-
-            remove(ref(realdb, "theProductRealdb/" + prd_name))
+            remove(ref(realdb, "theProductRealdb/" + prd_name.value))
                 .then(() => {
                     alert("data removed successfully");
                 })
                 .catch((error) => {
                     alert("unsucessful,error" + error);
-                })
+                });
         }
 
 
